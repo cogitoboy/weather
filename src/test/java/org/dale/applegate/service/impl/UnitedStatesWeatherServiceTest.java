@@ -23,7 +23,7 @@ public class UnitedStatesWeatherServiceTest {
 	private static final String VALID_WIND_DIRECTION = "N";
 	private static final String INVALID_ZIP = "00001";
 	private static final String INVALID_GIBBERISH = "sd$523 __3!@#$$A(%*";
-	private static final Integer VALID_WIND_SPEED = 15;
+	private static final String VALID_WIND_SPEED = "0.15";
 	private static Weather VALID_WEATHER = new Weather(VALID_WIND_DIRECTION, VALID_WIND_SPEED);
 	
 	@Mock

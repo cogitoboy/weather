@@ -1,13 +1,16 @@
 package org.dale.applegate.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Weather {
 
 	String windDirection;
-	Integer windSpeed;
+	String windSpeed;
 	
 	public Weather() {}
 	
-	public Weather(String windDirection, Integer windSpeed) {
+	public Weather(String windDirection, String windSpeed) {
 		this.windDirection = windDirection;
 		this.windSpeed = windSpeed;
 	}
@@ -20,11 +23,11 @@ public class Weather {
 		return windDirection;
 	}
 	
-	public void setWindSpeed(Integer windSpeed) {
+	public void setWindSpeed(String windSpeed) {
 		this.windSpeed = windSpeed;
 	}
 	
-	public Integer getWindSpeed() {
+	public String getWindSpeed() {
 		return windSpeed;
 	}
 }
