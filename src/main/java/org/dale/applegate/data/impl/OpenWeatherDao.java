@@ -29,7 +29,7 @@ public class OpenWeatherDao extends RestDao implements WeatherDao {
 	private WeatherHelper weatherHelper;
 	
 	@Override
-	@Cacheable(WeatherserviceApplication.MAIN_CACHE)
+	@Cacheable( value = WeatherserviceApplication.MAIN_CACHE, key = "#zipcode", unless = "#result != null", sync = true)
 	public Weather getWeatherByZip(String zipcode) {
 		
 		logger.debug(String.format(ZIPCODE_US_QUERY, zipcode, API_KEY));
