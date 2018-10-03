@@ -20,6 +20,8 @@ public class WeatherControllerTest {
 	private static final String VALID_LONG_ZIP = "89104-1200";
 	private static final String VALID_CANADA_ZIP = "M5P 3H4";
 	private static final String VALID_WIND_DIRECTION = "N";
+	private static final String INVALID_ZIP = "00001";
+	private static final String INVALID_GIBBERISH = "sd$523 __3!@#$$A(%*";
 	private static final Integer VALID_WIND_SPEED = 15;
 	private static Weather VALID_WEATHER = new Weather(VALID_WIND_DIRECTION, VALID_WIND_SPEED);
 	
@@ -49,14 +51,16 @@ public class WeatherControllerTest {
 	    weatherController.getWeather(VALID_CANADA_ZIP);
 	}
 	
-	@Test
+	@Test(expected = ResourceNotFoundException.class)
 	public void testGetWeatherInvalidZip() {
-		
+		when(weatherServiceMock.getWeather(INVALID_ZIP)).thenThrow(new ResourceNotFoundException(1L,"Zipcode not found"));
+	    weatherController.getWeather(INVALID_ZIP);
 	}
 	
-	@Test
+	@Test(expected = ResourceNotFoundException.class)
 	public void testGetWeatherGibberishZip() {
-		
+		when(weatherServiceMock.getWeather(INVALID_GIBBERISH)).thenThrow(new ResourceNotFoundException(1L,"Zipcode not found"));
+	    weatherController.getWeather(INVALID_GIBBERISH);
 	}
 	
 	
