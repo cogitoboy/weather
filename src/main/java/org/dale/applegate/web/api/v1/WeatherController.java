@@ -1,6 +1,5 @@
 package org.dale.applegate.web.api.v1;
 
-import org.dale.applegate.exception.ResourceNotFoundException;
 import org.dale.applegate.model.Weather;
 import org.dale.applegate.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
