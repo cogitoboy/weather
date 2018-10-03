@@ -5,5 +5,5 @@ import java.math.BigDecimal;
 public interface WeatherHelper {
 
 	
-	public String getWindDirection(BigDecimal degree);
+	public String convertWindDegreeToDirection(double degree);
 }

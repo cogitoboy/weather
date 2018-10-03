@@ -6,11 +6,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Weather {
 
 	String windDirection;
-	String windSpeed;
+	Double windSpeed;
 	
 	public Weather() {}
 	
-	public Weather(String windDirection, String windSpeed) {
+	public Weather(String windDirection, Double windSpeed) {
 		this.windDirection = windDirection;
 		this.windSpeed = windSpeed;
 	}
@@ -23,11 +23,11 @@ public class Weather {
 		return windDirection;
 	}
 	
-	public void setWindSpeed(String windSpeed) {
+	public void setWindSpeed(Double windSpeed) {
 		this.windSpeed = windSpeed;
 	}
 	
-	public String getWindSpeed() {
+	public Double getWindSpeed() {
 		return windSpeed;
 	}
 }

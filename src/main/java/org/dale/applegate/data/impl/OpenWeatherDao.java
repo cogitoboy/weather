@@ -25,7 +25,7 @@ public class OpenWeatherDao implements WeatherDao {
 	public Weather getWeatherByZip(String zipcode) {	
 		
 		//convert to big decimal
-		return new Weather("W", "0.99");
+		return new Weather("W", 0.99);
 	}
 
 	public class OpenWeatherDTO{
