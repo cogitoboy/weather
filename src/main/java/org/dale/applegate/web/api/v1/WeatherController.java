@@ -18,7 +18,7 @@ public class WeatherController {
 	
 	@RequestMapping( value = "/wind/{zipcode}", method = RequestMethod.GET)
 	public Weather getWeather(@PathVariable String zipcode) {
-		
+		//TODO: Validate the path parameter - need to do whatever openweather does on invalid addresses.
 		return weatherService.getWeather(zipcode);
 		
 	}

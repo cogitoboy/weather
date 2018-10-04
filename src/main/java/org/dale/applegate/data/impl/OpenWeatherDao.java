@@ -3,6 +3,7 @@ package org.dale.applegate.data.impl;
 import org.dale.applegate.WeatherserviceApplication;
 import org.dale.applegate.data.WeatherDao;
 import org.dale.applegate.exception.DaoException;
+import org.dale.applegate.exception.ResourceNotFoundException;
 import org.dale.applegate.model.Weather;
 import org.dale.applegate.service.helper.WeatherHelper;
 import org.dale.applegate.thirdparty.openweather.OpenWeather;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 @Repository("openWeatherDao")
@@ -29,16 +31,19 @@ public class OpenWeatherDao extends RestDao implements WeatherDao {
 	private WeatherHelper weatherHelper;
 	
 	@Override
-	@Cacheable( value = WeatherserviceApplication.MAIN_CACHE, key = "#zipcode", unless = "#result != null", sync = true)
+	@Cacheable(WeatherserviceApplication.MAIN_CACHE)
 	public Weather getWeatherByZip(String zipcode) {
 		
 		logger.debug(String.format(ZIPCODE_US_QUERY, zipcode, API_KEY));
 		
 		OpenWeather weather = null;
 		try {
+			
 			weather = restTemplate.getForObject(String.format(ZIPCODE_US_QUERY, zipcode, API_KEY), OpenWeather.class);
 		
-		} catch (Exception e) {
+		} catch (HttpClientErrorException e) {
+			throw new ResourceNotFoundException(2L, e.getMessage());
+		}catch (Exception e) {
 			throw new DaoException(1L , e.getMessage());
 		}
         
