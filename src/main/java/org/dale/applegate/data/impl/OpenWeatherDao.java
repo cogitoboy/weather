@@ -10,13 +10,15 @@ import org.dale.applegate.thirdparty.openweather.OpenWeather;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 @Repository("openWeatherDao")
-public class OpenWeatherDao extends RestDao implements WeatherDao {
+public class OpenWeatherDao extends SimpleCacheRestDao<OpenWeather> implements WeatherDao {
 
 	Logger logger = LoggerFactory.getLogger(OpenWeatherDao.class);
 	
@@ -30,8 +32,10 @@ public class OpenWeatherDao extends RestDao implements WeatherDao {
 	@Autowired
 	private WeatherHelper weatherHelper;
 	
+	
+	
 	@Override
-	@Cacheable(WeatherserviceApplication.MAIN_CACHE)
+	@Cacheable(CACHE_ID)
 	public Weather getWeatherByZip(String zipcode) {
 		
 		logger.debug(String.format(ZIPCODE_US_QUERY, zipcode, API_KEY));
@@ -40,7 +44,8 @@ public class OpenWeatherDao extends RestDao implements WeatherDao {
 		
 		try {
 			
-			weather = restTemplate.getForObject(String.format(ZIPCODE_US_QUERY, zipcode, API_KEY), OpenWeather.class);
+	//		weather = restTemplate.getForObject(String.format(ZIPCODE_US_QUERY, zipcode, API_KEY), OpenWeather.class);
+			weather = get(String.format(ZIPCODE_US_QUERY, zipcode, API_KEY), OpenWeather.class);
 		
 		} catch (HttpClientErrorException e) {
 			//TODO: Parse the response for resource not found versus other possible errors
@@ -55,5 +60,7 @@ public class OpenWeatherDao extends RestDao implements WeatherDao {
 	    logger.debug("windDirection={},windSpeed={}",windDirection, windSpeed);
    
 	    return new Weather(windDirection, windSpeed);
-	}	
+	}
+	
+	
 }

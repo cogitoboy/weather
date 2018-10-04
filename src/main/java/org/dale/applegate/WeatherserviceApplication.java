@@ -20,10 +20,6 @@ public class WeatherserviceApplication {
 	
 	Logger logger = LoggerFactory.getLogger(WeatherserviceApplication.class);
 	
-	//TODO: Externalize the evict delay to property file
-	public static final int MAIN_CACHE_TTL = 900000;
-	public static final String MAIN_CACHE = "MAIN_CACHE";
-
 	public static void main(String[] args) {
 		SpringApplication.run(WeatherserviceApplication.class, args);
 	}
@@ -33,9 +29,5 @@ public class WeatherserviceApplication {
 		return restTemplateBuilder.build();
 	}
 	
-	@CacheEvict(allEntries = true, cacheNames = { WeatherserviceApplication.MAIN_CACHE })
-	@Scheduled(fixedDelay = MAIN_CACHE_TTL)
-	public void cacheEvict() {
-		logger.debug("cache: {} evicted", WeatherserviceApplication.MAIN_CACHE);
-	}
+
 }
