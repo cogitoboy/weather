@@ -37,11 +37,13 @@ public class OpenWeatherDao extends RestDao implements WeatherDao {
 		logger.debug(String.format(ZIPCODE_US_QUERY, zipcode, API_KEY));
 		
 		OpenWeather weather = null;
+		
 		try {
 			
 			weather = restTemplate.getForObject(String.format(ZIPCODE_US_QUERY, zipcode, API_KEY), OpenWeather.class);
 		
 		} catch (HttpClientErrorException e) {
+			//TODO: Parse the response for resource not found versus other possible errors
 			throw new ResourceNotFoundException(2L, e.getMessage());
 		}catch (Exception e) {
 			throw new DaoException(1L , e.getMessage());

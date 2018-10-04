@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 import org.dale.applegate.exception.ResourceNotFoundException;
-import org.dale.applegate.model.ServiceError;
 import org.dale.applegate.model.Weather;
 import org.dale.applegate.service.WeatherService;
 import org.junit.Test;
@@ -62,7 +61,4 @@ public class WeatherControllerTest {
 		when(weatherServiceMock.getWeather(INVALID_GIBBERISH)).thenThrow(new ResourceNotFoundException(1L,"Zipcode not found"));
 	    weatherController.getWeather(INVALID_GIBBERISH);
 	}
-	
-	
-
 }
