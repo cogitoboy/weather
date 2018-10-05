@@ -35,17 +35,12 @@ public class CachedOpenWeatherDao implements WeatherDao, CachableDao {
 
   @Cacheable(CACHE_ID)
   public Weather getWeatherByZip(String zip) {
-
     return weatherDao.getWeatherByZip(zip);
-
   }
 
   @CacheEvict(allEntries = true, cacheNames = {CACHE_ID})
   @Scheduled(fixedDelay = CACHE_TTL)
   public void cacheEvict() {
-
     logger.debug("cache: {} evicted", CACHE_ID);
-
   }
-
 }

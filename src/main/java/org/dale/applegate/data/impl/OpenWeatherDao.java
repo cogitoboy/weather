@@ -29,7 +29,7 @@ public class OpenWeatherDao extends BaseRestDao<OpenWeather> implements WeatherD
   @Override
   public Weather getWeatherByZip(String zipcode) {
 
-    logger.debug(String.format(ZIPCODE_US_QUERY, zipcode, API_KEY));
+    logger.info(String.format(ZIPCODE_US_QUERY, zipcode, API_KEY));
 
     OpenWeather weather = null;
 
@@ -50,7 +50,5 @@ public class OpenWeatherDao extends BaseRestDao<OpenWeather> implements WeatherD
     logger.debug("windDirection={},windSpeed={}", windDirection, windSpeed);
 
     return new Weather(windDirection, windSpeed);
-
   }
-
 }

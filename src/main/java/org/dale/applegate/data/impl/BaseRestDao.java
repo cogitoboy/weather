@@ -14,7 +14,7 @@ public class BaseRestDao<T> {
 
 
   public T get(String URI, Class origin) {
-    System.out.println("GRABED -->");
+    
     return (T) restTemplate.getForObject(URI, origin);
   }
 

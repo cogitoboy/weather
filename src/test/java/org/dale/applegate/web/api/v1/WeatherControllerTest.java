@@ -72,7 +72,5 @@ public class WeatherControllerTest {
     when(weatherServiceMock.getWeather(INVALID_GIBBERISH))
         .thenThrow(new ResourceNotFoundException(1L, "Zipcode not found"));
     weatherController.getWeather(INVALID_GIBBERISH);
-
   }
-
 }

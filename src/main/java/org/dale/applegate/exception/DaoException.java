@@ -6,11 +6,9 @@ public class DaoException extends RuntimeException {
   public DaoException(Long resourceId, String message) {
     super(message);
     this.resourceId = resourceId;
-
   }
 
   public Long getResourceId() {
     return resourceId;
   }
-
 }
