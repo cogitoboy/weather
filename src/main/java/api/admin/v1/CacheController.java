@@ -1,4 +1,4 @@
-package org.dale.applegate.web.api.v1;
+package api.admin.v1;
 
 import org.dale.applegate.data.CachableDao;
 import org.springframework.beans.factory.annotation.Autowired;
