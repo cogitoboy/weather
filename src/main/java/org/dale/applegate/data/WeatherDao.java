@@ -4,6 +4,6 @@ import org.dale.applegate.model.Weather;
 
 public interface WeatherDao {
 
-	public Weather getWeatherByZip(String zip);
-	
+  public Weather getWeatherByZip(String zip);
+
 }
