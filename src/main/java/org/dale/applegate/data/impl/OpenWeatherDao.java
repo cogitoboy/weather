@@ -15,7 +15,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 @Repository("openWeatherDao")
-public class OpenWeatherDao extends BasicCachableRestDao<OpenWeather> implements WeatherDao {
+public class OpenWeatherDao extends SimpleCachableDao<OpenWeather> implements WeatherDao {
 
 	Logger logger = LoggerFactory.getLogger(OpenWeatherDao.class);
 	

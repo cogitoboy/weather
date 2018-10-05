@@ -14,7 +14,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class UnitedStatesWeatherServiceTest {
+public class DomesticWeatherServiceTest {
 
 
 	private static final String VALID_ZIP = "89104";
@@ -30,7 +30,7 @@ public class UnitedStatesWeatherServiceTest {
 	OpenWeatherDao weatherDaoMock;
 	
 	@InjectMocks
-	private UnitedStatesWeatherService weatherService;
+	private DomesticWeatherService weatherService;
 	
 	@Test
 	public void testGetWeather() {

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class UnitedStatesWeatherService implements WeatherService, CachableService {
+public class DomesticWeatherService implements WeatherService {
 
 	@Autowired
 	@Qualifier("openWeatherDao")
@@ -40,13 +40,9 @@ public class UnitedStatesWeatherService implements WeatherService, CachableServi
 	/**
 	 * This method is to clear the cache of any daos.
 	 * 
-	 * Note: this is a cross cutting concern and is a little clumsy here.
-	 * Something like injection would be a better approach to providing this
-	 * cachable implementation than using inheritance. 
-	 * 
 	 */
 	@Override
-	public synchronized void clearCache() {
+	public synchronized void clearCache() { //synchronized for thread safety when using basic cachable daos
 		
 		weatherDao.cacheEvict();
 		

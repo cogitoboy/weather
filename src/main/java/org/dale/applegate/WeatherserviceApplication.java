@@ -3,6 +3,7 @@ package org.dale.applegate;
 import org.dale.applegate.data.impl.OpenWeatherDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -16,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableCaching
 @EnableScheduling
-public class WeatherserviceApplication {
+public class WeatherserviceApplication implements CommandLineRunner {
 	
 	Logger logger = LoggerFactory.getLogger(WeatherserviceApplication.class);
 	
@@ -27,6 +28,16 @@ public class WeatherserviceApplication {
 	@Bean
 	public RestTemplate getRestTemplate(RestTemplateBuilder restTemplateBuilder) {
 		return restTemplateBuilder.build();
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		 System.out.println("EXECUTING : command line runner");
+		  
+	        for (int i = 0; i < args.length; ++i) {
+	            System.out.println("args["+ i +"]: "+ args[i] );
+	        }
+		
 	}
 	
 

@@ -8,11 +8,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
-public class BasicWeatherHelperTest {
+public class SimpleWeatherHelperTest {
 
 	//TODO: Move wind directions to enums
 	private static final String UNKNOWN_DIRECTION = "UNKNOWN";
-	BasicWeatherHelper basicWeatherHelper = new BasicWeatherHelper();
+	SimpleWeatherHelper basicWeatherHelper = new SimpleWeatherHelper();
 	
 	@Test
 	public void testConvertWindDegreeToDirection() {

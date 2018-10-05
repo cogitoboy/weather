@@ -32,33 +32,44 @@ public class WeatherControllerTest {
 
 	@Test
 	public void testGetWeather() {
+	
 		when(weatherServiceMock.getWeather(VALID_ZIP)).thenReturn(VALID_WEATHER);
 		assertEquals(VALID_WIND_DIRECTION, weatherController.getWeather(VALID_ZIP).getWindDirection());
 		assertEquals(VALID_WIND_SPEED, weatherController.getWeather(VALID_ZIP).getWindSpeed());
+	
 	}
 	
 	@Test
 	public void testGetWeatherValidLongZip() {
+	
 		when(weatherServiceMock.getWeather(VALID_LONG_ZIP)).thenReturn(VALID_WEATHER);
 		assertEquals(VALID_WIND_DIRECTION, weatherController.getWeather(VALID_LONG_ZIP).getWindDirection());
 		assertEquals(VALID_WIND_SPEED, weatherController.getWeather(VALID_LONG_ZIP).getWindSpeed());
+	
 	}
 	
 	@Test(expected = ResourceNotFoundException.class)
 	public void testGetWeatherCanadaZip() {
+	
 		when(weatherServiceMock.getWeather(VALID_CANADA_ZIP)).thenThrow(new ResourceNotFoundException(1L,"Zipcode not found"));
 	    weatherController.getWeather(VALID_CANADA_ZIP);
+	
 	}
 	
 	@Test(expected = ResourceNotFoundException.class)
 	public void testGetWeatherInvalidZip() {
+	
 		when(weatherServiceMock.getWeather(INVALID_ZIP)).thenThrow(new ResourceNotFoundException(1L,"Zipcode not found"));
 	    weatherController.getWeather(INVALID_ZIP);
+	
 	}
 	
 	@Test(expected = ResourceNotFoundException.class)
 	public void testGetWeatherGibberishZip() {
+	
 		when(weatherServiceMock.getWeather(INVALID_GIBBERISH)).thenThrow(new ResourceNotFoundException(1L,"Zipcode not found"));
 	    weatherController.getWeather(INVALID_GIBBERISH);
+
 	}
+
 }

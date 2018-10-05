@@ -4,7 +4,7 @@ import org.dale.applegate.service.helper.WeatherHelper;
 import org.springframework.stereotype.Component;
  
 @Component
-public class BasicWeatherHelper implements WeatherHelper {
+public class SimpleWeatherHelper implements WeatherHelper {
 
 	@Override
 	public String convertWindDegreeToDirection(double degree) {
