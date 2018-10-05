@@ -1,6 +1,6 @@
 package org.dale.applegate.data;
 
-public interface RestDao {
+public interface CachableRestDao {
 	
 	public void cacheEvict();
 
