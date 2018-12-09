@@ -14,12 +14,12 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableCaching
 @EnableScheduling
-public class WeatherserviceApplication {
+public class StalesoftApplication {
 
-  Logger logger = LoggerFactory.getLogger(WeatherserviceApplication.class);
+  Logger logger = LoggerFactory.getLogger(StalesoftApplication.class);
 
   public static void main(String[] args) {
-    SpringApplication.run(WeatherserviceApplication.class, args);
+    SpringApplication.run(StalesoftApplication.class, args);
   }
 
   @Bean
