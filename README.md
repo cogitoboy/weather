@@ -1,12 +1,13 @@
 # Weather Information Service
 
-### Build and Run
+## Build and Run
 
-Build
+### Build
 
 ```
 mvn install
 ```
+
 
 Run
 

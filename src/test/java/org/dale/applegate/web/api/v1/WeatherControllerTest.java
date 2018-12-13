@@ -5,6 +5,8 @@ import static org.mockito.Mockito.when;
 import org.dale.applegate.exception.ResourceNotFoundException;
 import org.dale.applegate.model.Weather;
 import org.dale.applegate.service.WeatherService;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -24,15 +26,16 @@ public class WeatherControllerTest {
   private static Weather VALID_WEATHER = new Weather(VALID_WIND_DIRECTION, VALID_WIND_SPEED);
 
   @Mock
-  WeatherService weatherServiceMock;
-
+  WeatherService weatherService;
+  
   @InjectMocks
   WeatherController weatherController;
 
   @Test
   public void testGetWeather() {
 
-    when(weatherServiceMock.getWeather(VALID_ZIP)).thenReturn(VALID_WEATHER);
+    when(weatherService.getWeather(VALID_ZIP)).thenReturn(VALID_WEATHER);
+    
     assertEquals(VALID_WIND_DIRECTION, weatherController.getWeather(VALID_ZIP).getWindDirection());
     assertEquals(VALID_WIND_SPEED, weatherController.getWeather(VALID_ZIP).getWindSpeed());
 
@@ -41,7 +44,7 @@ public class WeatherControllerTest {
   @Test
   public void testGetWeatherValidLongZip() {
 
-    when(weatherServiceMock.getWeather(VALID_LONG_ZIP)).thenReturn(VALID_WEATHER);
+    when(weatherService.getWeather(VALID_LONG_ZIP)).thenReturn(VALID_WEATHER);
     assertEquals(VALID_WIND_DIRECTION,
         weatherController.getWeather(VALID_LONG_ZIP).getWindDirection());
     assertEquals(VALID_WIND_SPEED, weatherController.getWeather(VALID_LONG_ZIP).getWindSpeed());
@@ -51,7 +54,7 @@ public class WeatherControllerTest {
   @Test(expected = ResourceNotFoundException.class)
   public void testGetWeatherCanadaZip() {
 
-    when(weatherServiceMock.getWeather(VALID_CANADA_ZIP))
+    when(weatherService.getWeather(VALID_CANADA_ZIP))
         .thenThrow(new ResourceNotFoundException(1L, "Zipcode not found"));
     weatherController.getWeather(VALID_CANADA_ZIP);
 
@@ -60,7 +63,7 @@ public class WeatherControllerTest {
   @Test(expected = ResourceNotFoundException.class)
   public void testGetWeatherInvalidZip() {
 
-    when(weatherServiceMock.getWeather(INVALID_ZIP))
+    when(weatherService.getWeather(INVALID_ZIP))
         .thenThrow(new ResourceNotFoundException(1L, "Zipcode not found"));
     weatherController.getWeather(INVALID_ZIP);
 
@@ -69,7 +72,7 @@ public class WeatherControllerTest {
   @Test(expected = ResourceNotFoundException.class)
   public void testGetWeatherGibberishZip() {
 
-    when(weatherServiceMock.getWeather(INVALID_GIBBERISH))
+    when(weatherService.getWeather(INVALID_GIBBERISH))
         .thenThrow(new ResourceNotFoundException(1L, "Zipcode not found"));
     weatherController.getWeather(INVALID_GIBBERISH);
   }
