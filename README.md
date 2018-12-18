@@ -1,6 +1,6 @@
 # Staleapp Information Service
 
-## Build and Run
+## Build & Run
 
 ### Build
 
