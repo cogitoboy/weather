@@ -1,4 +1,4 @@
-# Weather Information Service
+# Staleapp Information Service
 
 ## Build and Run
 
