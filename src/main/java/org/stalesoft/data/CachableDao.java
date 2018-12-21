@@ -1,4 +1,4 @@
-package org.dale.applegate.data;
+package org.stalesoft.data;
 
 public interface CachableDao {
 

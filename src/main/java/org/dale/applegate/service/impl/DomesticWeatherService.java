@@ -1,6 +1,6 @@
 package org.dale.applegate.service.impl;
 
-import org.dale.applegate.data.WeatherDao;
+import org.stalesoft.data.WeatherDao;
 import org.dale.applegate.model.Weather;
 import org.dale.applegate.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;

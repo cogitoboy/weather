@@ -1,7 +1,7 @@
 package org.stalesoft.data.impl;
 
-import org.dale.applegate.data.CachableDao;
-import org.dale.applegate.data.WeatherDao;
+import org.stalesoft.data.CachableDao;
+import org.stalesoft.data.WeatherDao;
 import org.dale.applegate.model.Weather;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

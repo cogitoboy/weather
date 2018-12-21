@@ -1,4 +1,4 @@
-package org.dale.applegate.data;
+package org.stalesoft.data;
 
 import org.dale.applegate.model.Weather;
 

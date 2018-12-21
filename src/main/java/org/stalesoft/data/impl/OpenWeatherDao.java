@@ -1,6 +1,6 @@
 package org.stalesoft.data.impl;
 
-import org.dale.applegate.data.WeatherDao;
+import org.stalesoft.data.WeatherDao;
 import org.dale.applegate.exception.DaoException;
 import org.dale.applegate.exception.ResourceNotFoundException;
 import org.dale.applegate.model.Weather;
