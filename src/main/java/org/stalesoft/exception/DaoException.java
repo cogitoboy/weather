@@ -1,4 +1,4 @@
-package org.dale.applegate.exception;
+package org.stalesoft.exception;
 
 public class DaoException extends RuntimeException {
   private Long resourceId;

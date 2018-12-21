@@ -2,6 +2,7 @@ package org.dale.applegate.exception;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
+import org.stalesoft.exception.ResourceNotFoundException;
 
 public class ResourceNotFoundExceptionTest {
 

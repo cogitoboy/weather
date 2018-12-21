@@ -2,11 +2,10 @@ package org.dale.applegate.web.api.v1;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
-import org.dale.applegate.exception.ResourceNotFoundException;
+import org.stalesoft.exception.ResourceNotFoundException;
 import org.dale.applegate.model.Weather;
 import org.dale.applegate.service.WeatherService;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

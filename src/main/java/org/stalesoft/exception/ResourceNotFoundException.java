@@ -1,4 +1,4 @@
-package org.dale.applegate.exception;
+package org.stalesoft.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 
