@@ -1,4 +1,4 @@
-package org.dale.applegate.data.impl;
+package org.stalesoft.data.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

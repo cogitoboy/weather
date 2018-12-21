@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 
-@ComponentScan("org.dale.applegate")
+@ComponentScan({"org.dale.applegate", "org.stalesoft"})
 @SpringBootApplication
 @EnableCaching
 @EnableScheduling

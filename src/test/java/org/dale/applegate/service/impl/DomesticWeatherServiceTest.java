@@ -2,7 +2,7 @@ package org.dale.applegate.service.impl;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
-import org.dale.applegate.data.impl.OpenWeatherDao;
+import org.stalesoft.data.impl.OpenWeatherDao;
 import org.dale.applegate.exception.ResourceNotFoundException;
 import org.dale.applegate.model.Weather;
 import org.junit.Test;

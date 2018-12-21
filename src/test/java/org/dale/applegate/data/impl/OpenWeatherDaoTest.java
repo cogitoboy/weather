@@ -14,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.web.client.RestTemplate;
+import org.stalesoft.data.impl.OpenWeatherDao;
 
 @RunWith(MockitoJUnitRunner.class)
 public class OpenWeatherDaoTest {

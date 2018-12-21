@@ -1,4 +1,4 @@
-package org.dale.applegate.data.impl;
+package org.stalesoft.data.impl;
 
 import org.dale.applegate.data.CachableDao;
 import org.dale.applegate.data.WeatherDao;
