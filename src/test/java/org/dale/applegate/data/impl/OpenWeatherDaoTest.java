@@ -2,7 +2,7 @@ package org.dale.applegate.data.impl;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
-import org.dale.applegate.model.Weather;
+import org.stalesoft.model.Weather;
 import org.dale.applegate.service.helper.WeatherHelper;
 import org.dale.applegate.thirdparty.openweather.OpenWeather;
 import org.dale.applegate.thirdparty.openweather.Wind;

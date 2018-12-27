@@ -1,6 +1,6 @@
 package org.stalesoft.data;
 
-import org.dale.applegate.model.Weather;
+import org.stalesoft.model.Weather;
 
 public interface WeatherDao {
 

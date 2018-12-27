@@ -3,7 +3,7 @@ package org.dale.applegate.web.api.v1;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 import org.stalesoft.exception.ResourceNotFoundException;
-import org.dale.applegate.model.Weather;
+import org.stalesoft.model.Weather;
 import org.dale.applegate.service.WeatherService;
 
 import org.junit.Test;

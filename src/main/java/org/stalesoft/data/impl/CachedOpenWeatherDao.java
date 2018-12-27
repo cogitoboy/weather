@@ -2,7 +2,7 @@ package org.stalesoft.data.impl;
 
 import org.stalesoft.data.CachableDao;
 import org.stalesoft.data.WeatherDao;
-import org.dale.applegate.model.Weather;
+import org.stalesoft.model.Weather;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

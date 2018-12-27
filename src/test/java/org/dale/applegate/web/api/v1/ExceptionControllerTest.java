@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 import org.stalesoft.exception.DaoException;
 import org.stalesoft.exception.ResourceNotFoundException;
-import org.dale.applegate.model.ServiceError;
+import org.stalesoft.model.ServiceError;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

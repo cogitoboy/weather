@@ -2,7 +2,7 @@ package org.dale.applegate.web.api.v1;
 
 import org.stalesoft.exception.DaoException;
 import org.stalesoft.exception.ResourceNotFoundException;
-import org.dale.applegate.model.ServiceError;
+import org.stalesoft.model.ServiceError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

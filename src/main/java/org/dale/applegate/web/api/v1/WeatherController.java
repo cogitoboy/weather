@@ -1,6 +1,6 @@
 package org.dale.applegate.web.api.v1;
 
-import org.dale.applegate.model.Weather;
+import org.stalesoft.model.Weather;
 import org.dale.applegate.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

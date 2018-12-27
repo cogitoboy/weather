@@ -1,4 +1,4 @@
-package org.dale.applegate.model;
+package org.stalesoft.model;
 
 public class ServiceError {
 
