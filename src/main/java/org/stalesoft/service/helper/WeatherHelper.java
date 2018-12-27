@@ -1,4 +1,4 @@
-package org.dale.applegate.service.helper;
+package org.stalesoft.service.helper;
 
 public interface WeatherHelper {
 

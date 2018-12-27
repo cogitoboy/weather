@@ -1,4 +1,4 @@
-package org.dale.applegate.web.api.v1;
+package org.stalesoft.web.api.v1;
 
 import org.stalesoft.exception.DaoException;
 import org.stalesoft.exception.ResourceNotFoundException;

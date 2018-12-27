@@ -1,4 +1,4 @@
-package org.dale.applegate.service;
+package org.stalesoft.service;
 
 import org.stalesoft.model.Weather;
 

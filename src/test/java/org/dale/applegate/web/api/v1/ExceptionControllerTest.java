@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 import org.stalesoft.exception.DaoException;
 import org.stalesoft.exception.ResourceNotFoundException;
 import org.stalesoft.model.ServiceError;
+import org.stalesoft.web.api.v1.ExceptionController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

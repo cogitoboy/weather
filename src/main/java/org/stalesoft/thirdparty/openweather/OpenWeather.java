@@ -1,5 +1,5 @@
 
-package org.dale.applegate.thirdparty.openweather;
+package org.stalesoft.thirdparty.openweather;
 
 import java.util.HashMap;
 import java.util.List;

@@ -3,6 +3,7 @@ package org.dale.applegate.service.helper.impl;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
+import org.stalesoft.service.helper.impl.SimpleWeatherHelper;
 
 public class SimpleWeatherHelperTest {
 

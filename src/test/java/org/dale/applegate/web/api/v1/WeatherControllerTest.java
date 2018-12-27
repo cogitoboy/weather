@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 import org.stalesoft.exception.ResourceNotFoundException;
 import org.stalesoft.model.Weather;
-import org.dale.applegate.service.WeatherService;
-
+import org.stalesoft.service.WeatherService;
+import org.stalesoft.web.api.v1.WeatherController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

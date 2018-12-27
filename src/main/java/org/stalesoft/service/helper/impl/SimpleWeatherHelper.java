@@ -1,6 +1,6 @@
-package org.dale.applegate.service.helper.impl;
+package org.stalesoft.service.helper.impl;
 
-import org.dale.applegate.service.helper.WeatherHelper;
+import org.stalesoft.service.helper.WeatherHelper;
 import org.springframework.stereotype.Component;
 
 @Component

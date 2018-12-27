@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 import org.stalesoft.data.impl.OpenWeatherDao;
 import org.stalesoft.exception.ResourceNotFoundException;
 import org.stalesoft.model.Weather;
+import org.stalesoft.service.impl.DomesticWeatherService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
