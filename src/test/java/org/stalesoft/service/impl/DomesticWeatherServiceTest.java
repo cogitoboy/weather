@@ -1,4 +1,4 @@
-package org.dale.applegate.service.impl;
+package org.stalesoft.service.impl;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;

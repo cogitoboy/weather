@@ -14,4 +14,5 @@ public class DashboardController {
        
         return "app/home";
     }
+	
 }

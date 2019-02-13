@@ -1,4 +1,4 @@
-package org.dale.applegate.service.helper.impl;
+package org.stalesoft.service.helper.impl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
