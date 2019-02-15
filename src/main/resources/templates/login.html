@@ -1,9 +1,40 @@
-<!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Login</title>
-</head>
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js" lang="" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Stalesoft Login</title>
+        <meta name="description" content="Stalesoft login page">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="/css/iconfont.css">
+        <link rel="stylesheet" href="/css/slick/slick.css">
+        <link rel="stylesheet" href="/css/slick/slick-theme.css">
+        <link rel="stylesheet" href="/css/stylesheet.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/jquery.fancybox.css">
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/magnific-popup.css">
+        
+        <link rel="stylesheet" href="/css/plugins.css" />
+
+        
+        <link rel="stylesheet" href="/css/style.css">
+
+        
+        <link rel="stylesheet" href="/css/responsive.css" />
+
+        <script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
 <body>
 <div>
 
@@ -18,7 +49,7 @@
                 </div>
                 <div th:if="${param.logout}">
                     <div class="alert alert-info">
-                        You have been logged out.
+                        You have been logged out!!!
                     </div>
                 </div>
                 <div class="form-group">
@@ -44,7 +75,7 @@
                             <input type="submit"
                                    name="login-submit"
                                    id="login-submit"
-                                   class="form-control btn btn-info"
+                                   class="btn btn-lg m_t_10"
                                    value="Log In">
                         </div>
                     </div>
