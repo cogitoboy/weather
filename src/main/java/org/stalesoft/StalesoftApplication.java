@@ -9,9 +9,12 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 
+
+@ImportResource("classpath:application-context.xml")
 @ComponentScan({"org.stalesoft"})
 @SpringBootApplication
 @EnableCaching

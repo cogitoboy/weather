@@ -5,18 +5,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class WelcomeController {
+public class DocumentController {
 
 	
-	@GetMapping("/")
+	@GetMapping("/app/document")
     public String home(Model model) {
        
-        return "index";
-    }
-	
-	@GetMapping("/welcome")
-    public String greeting(Model model) {
-       
-        return "welcome";
+        return "app/document";
     }
 }
