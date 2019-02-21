@@ -1,4 +1,4 @@
-package org.dale.applegate.exception;
+package org.stalesoft.exception;
 
 import static org.junit.Assert.*;
 import org.junit.Test;

@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.daleapplegate</groupId>
+	<groupId>org.statlesoft</groupId>
 	<artifactId>stalesoftapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
@@ -22,6 +22,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		
+		<!-- upgrade to thymeleaf version 3 -->
+        <thymeleaf.version>3.0.8.RELEASE</thymeleaf.version>
+        <thymeleaf-layout-dialect.version>2.2.2</thymeleaf-layout-dialect.version>
+        <thymeleaf-extras-springsecurity4.version>3.0.2.RELEASE</thymeleaf-extras-springsecurity4.version>
 	</properties>
 
 	<dependencies>
@@ -34,6 +39,10 @@
 			<artifactId>spring-boot-starter-jersey</artifactId>
 		</dependency>
 		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -41,12 +50,42 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-
+  		 <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		 <!-- bootstrap and jquery -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.3.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+        
+         <!-- The JCR API -->
+        <dependency>
+            <groupId>javax.jcr</groupId>
+            <artifactId>jcr</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <!-- Jackrabbit content repository -->
+        <dependency>
+            <groupId>org.apache.jackrabbit</groupId>
+            <artifactId>jackrabbit-core</artifactId>
+            <version>2.17.0</version>
+        </dependency>
+		
 		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
 		<dependency>
 		    <groupId>org.mockito</groupId>

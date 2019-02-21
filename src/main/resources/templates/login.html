@@ -1,0 +1,93 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js" lang="" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Stalesoft Login</title>
+        <meta name="description" content="Stalesoft login page">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="/css/iconfont.css">
+        <link rel="stylesheet" href="/css/slick/slick.css">
+        <link rel="stylesheet" href="/css/slick/slick-theme.css">
+        <!-- link rel="stylesheet" href="/css/stylesheet.css"-->
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/jquery.fancybox.css">
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/magnific-popup.css">
+        
+        <link rel="stylesheet" href="/css/plugins.css" />
+
+        
+        <link rel="stylesheet" href="/css/style.css">
+
+        
+        <link rel="stylesheet" href="/css/responsive.css" />
+        <link rel="stylesheet" href="/css/staleweb-main.css" />
+        <link rel="stylesheet" href="/css/staleweb-login.css" />
+
+        <script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+<body>
+<div>
+
+    <div class="row">  
+        <div class="col-md-6 col-md-offset-3">
+            <h1>Login page</h1>
+            <form th:action="@{/login}" method="post">
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">
+                        Invalid username or password.
+                    </div>
+                </div>
+                <div th:if="${param.logout}">
+                    <div class="alert alert-info">
+                        You have been logged out!!!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>:
+                    <input type="text"
+                           id="username"
+                           name="username"
+                           class="form-control"
+                           autofocus="autofocus"
+                           placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>:
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           class="form-control"
+                           placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit"
+                                   name="login-submit"
+                                   id="login-submit"
+                                   class="btn btn-lg m_t_10"
+                                   value="Log In">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <p><a href="/" th:href="@{/}">Back to home page</a></p>
+
+</div>
+</body>
+</html>
