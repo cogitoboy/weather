@@ -1,39 +1,28 @@
-# Staleapp Information Service
-
-## Build & Run
-
-### Build
-
-```
-mvn install
-```
+# Staleweb Development Guide
 
 
-Run
 
-```
-java -jar target/weatherservice-0.0.1-SNAPSHOT.jar
-```
 
-## Use
+## Spring
 
-##### Get Wind Information Guide
-Provide a US zipcode via HTTP.GET and retrieve a **Weather** object.
+### Authentication
 
-Service
-**/api/v1/wind/<zipcode>**
+Currently uses Spring Security but with a non-production embedded user store.
 
-Command line example:
-```
-curl -X http://localhost:8080/api/v1/wind/89102
-```
+### Controllers
 
-##### Clear Application Cache
-Clear the application cache via HTTP.DELETE.
-Service
-**/admin/cache**
+The controller all should have a 'appName' embedded in all requests.
 
-Command line example
-```
-curl -X "DELETE"  http://localhost:8080/admin/cache
-```
+## DataStores
+
+### Heroku Postgres
+
+### Local Oracle
+
+## Hibernate
+
+## Jackrabbit
+
+## Thymeleaf
+
+
