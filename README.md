@@ -1,12 +1,13 @@
-# Weather Information Service
+# Staleapp Information Service
 
-### Build and Run
+## Build & Run
 
-Build
+### Build
 
 ```
 mvn install
 ```
+
 
 Run
 
@@ -16,8 +17,9 @@ java -jar target/weatherservice-0.0.1-SNAPSHOT.jar
 
 ## Use
 
-##### Get Wind Information
+##### Get Wind Information Guide
 Provide a US zipcode via HTTP.GET and retrieve a **Weather** object.
+
 Service
 **/api/v1/wind/<zipcode>**
 

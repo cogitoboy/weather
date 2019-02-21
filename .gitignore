@@ -23,3 +23,6 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+/bin/
+/.attach_pid10061
+/jackrabbit/
