@@ -46,24 +46,7 @@ public class DocumentController {
 		DocumentListDto documentList = new DocumentListDto();
 		documentList.add(documents);
 		
-		
-		//model.addAttribute("results", documentList);
-		
-		
-		//TEST
-		DocumentListDto testDocumentList = new DocumentListDto();
-		
-		Document document = new Document();
-		document.setTitle("Title");
-		document.setType(1);
-		
-		ArrayList<Document> testDocumentArray = new ArrayList<>();
-		testDocumentArray.add(document);
-		
-		testDocumentList.add(testDocumentArray);
-		
-		model.addAttribute("results", testDocumentList);
-		//END TEST
+		model.addAttribute("results", documentList);
 		
         return "app/search";
     }

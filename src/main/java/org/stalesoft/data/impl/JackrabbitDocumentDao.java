@@ -36,6 +36,8 @@ public class JackrabbitDocumentDao implements DocumentDao {
 		ArrayList<Document> documents = new ArrayList<>();
 		
 		Document document_1 = new Document();
+		document_1.setTitle("My Title");
+		document_1.setType(2);
 		
 		documents.add(document_1);
 		

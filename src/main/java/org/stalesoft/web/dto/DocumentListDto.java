@@ -6,17 +6,17 @@ import org.stalesoft.model.Document;
 
 public class DocumentListDto implements BaseDto<ArrayList<Document>>{
 	
-	private ArrayList<Document> documents = new ArrayList<>();
+	private ArrayList<DocumentDto> documentDtos = new ArrayList<>();
 
-	public ArrayList<Document> getDocuments() {
-		return documents;
+	public ArrayList<DocumentDto> getDocuments() {
+		return documentDtos;
 	}
 
-	public void setDocuments(ArrayList<Document> documents) {
+	public void setDocuments(ArrayList<DocumentDto> documentDtos) {
 		
-		assert(documents != null);
+		assert(documentDtos != null);
 		
-		this.documents = documents;
+		this.documentDtos = documentDtos;
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class DocumentListDto implements BaseDto<ArrayList<Document>>{
 			DocumentDto documentDto = new DocumentDto();
 			documentDto.add(document);
 			
-			this.documents.add(document);
+			this.documentDtos.add(documentDto);
 			
 		}
 		

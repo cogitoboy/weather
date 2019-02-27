@@ -18,6 +18,7 @@ public class DocumentDto implements BaseDto<Document>{
 	}
 	
 	
+	
 	public String getTitle() {
 		return documentTitle;
 	}
@@ -29,17 +30,16 @@ public class DocumentDto implements BaseDto<Document>{
 	@Override
 	public void add(Document model) {
 
-		DocumentDto documentDto = new DocumentDto();
-		documentDto.setTitle(model.getTitle());
+		setTitle(model.getTitle());
 
-		// TODO: needs to be an enum
+		// TODO: needs to be an enum 
 		if (model.getType() != null) {
 			switch (model.getType()) {
 
 			case 1:
-				documentDto.setTitle("Title One");
+				setType("Title One");
 			default:
-				documentDto.setTitle("Unknown");
+				setType("Unknown");
 
 			}
 		}
