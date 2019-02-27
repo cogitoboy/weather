@@ -1,5 +1,7 @@
 package org.stalesoft.service.impl;
 
+import java.util.ArrayList;
+
 import javax.jcr.Repository;
 import javax.jcr.Session;
 import javax.jcr.SimpleCredentials;
@@ -7,6 +9,8 @@ import javax.jcr.SimpleCredentials;
 import org.apache.jackrabbit.core.RepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.stalesoft.data.DocumentDao;
+import org.stalesoft.model.Document;
 import org.stalesoft.service.DocumentService;
 
 @Service
@@ -14,6 +18,9 @@ public class JcrDocumentService implements DocumentService {
 
 	private Repository repository;
 	private Session session;
+	
+	@Autowired
+	private DocumentDao documentDao;
 
 	@Autowired
 	public JcrDocumentService(RepositoryImpl jcrRespository) throws Exception {
@@ -28,5 +35,21 @@ public class JcrDocumentService implements DocumentService {
 		} finally {
 			session.logout();
 		}
+	}
+
+	@Override
+	public Document getDocument(String id) {
+		
+		Document document = documentDao.getDocument(id);
+		return null;
+	}
+
+	@Override
+	public ArrayList<Document> findDocuments(String query) {
+		
+		ArrayList<Document> documents = documentDao.queryDocuments(query);
+		
+		return documents;
+		
 	}
 }
