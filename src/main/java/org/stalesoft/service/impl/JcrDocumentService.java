@@ -16,32 +16,17 @@ import org.stalesoft.service.DocumentService;
 @Service
 public class JcrDocumentService implements DocumentService {
 
-	private Repository repository;
-	private Session session;
-	
 	@Autowired
 	private DocumentDao documentDao;
 
-	@Autowired
-	public JcrDocumentService(RepositoryImpl jcrRespository) throws Exception {
-		this.repository = jcrRespository;
-		
-		
-		session = repository.login(new SimpleCredentials("admin", "superSecret!".toCharArray()));
-		try {
-			String user = session.getUserID();
-			String name = repository.getDescriptor(Repository.REP_NAME_DESC);
-			System.out.println("Logged in as " + user + " to a " + name + " repository.");
-		} finally {
-			session.logout();
-		}
-	}
+	
 
 	@Override
 	public Document getDocument(String id) {
 		
 		Document document = documentDao.getDocument(id);
-		return null;
+		
+		return document;
 	}
 
 	@Override
@@ -51,5 +36,11 @@ public class JcrDocumentService implements DocumentService {
 		
 		return documents;
 		
+	}
+
+	@Override
+	public void addDocument(Document document) {
+		
+		documentDao.saveDocument(document);
 	}
 }
