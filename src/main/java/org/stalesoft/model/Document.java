@@ -1,6 +1,7 @@
 package org.stalesoft.model;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 
 public class Document {
 
@@ -19,7 +20,7 @@ public class Document {
 	private Folder folder;
 	private String name;
 	private Integer mimeType;
-	private FileInputStream fileInputStream;
+	private InputStream inputStream;
 	
 	public String getName() {
 		return name;
@@ -46,12 +47,12 @@ public class Document {
 		this.folder = folder;
 	}
 
-	public FileInputStream getFileInputStream() {
-		return fileInputStream;
+	public InputStream getInputStream() {
+		return inputStream;
 	}
 
-	public void setFileInputStream(FileInputStream fileInputStream) {
-		this.fileInputStream = fileInputStream;
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
 	}
 	
 	

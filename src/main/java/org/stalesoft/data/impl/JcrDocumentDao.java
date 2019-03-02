@@ -74,7 +74,9 @@ public class JcrDocumentDao implements DocumentDao {
 			
 			Node documentNode = folder.addNode(document.getName(), "nt:file");
 			Node contentNode = documentNode.addNode("jcr:content","nt:resource");
-			Binary binary = session.getValueFactory().createBinary(document.getFileInputStream());
+			
+			//I seem to need an input stream to write a file
+			Binary binary = session.getValueFactory().createBinary(document.getInputStream());
 			
 			contentNode.setProperty("jcr:data", binary);
 			contentNode.setProperty("jcr:mimeType", document.getMimeType());
@@ -124,11 +126,7 @@ public class JcrDocumentDao implements DocumentDao {
 			    Document document = new Document();
 			    document.setName(node.getName());
 			    
-			    
-
 			}
-
-			
 			
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
