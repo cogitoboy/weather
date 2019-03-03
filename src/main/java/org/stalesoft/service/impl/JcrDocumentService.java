@@ -24,7 +24,7 @@ public class JcrDocumentService implements DocumentService {
 	@Override
 	public Document getDocument(String id) {
 		
-		Document document = documentDao.getDocument(id);
+		Document document = documentDao.getDocumentById(id);
 		
 		return document;
 	}
@@ -32,7 +32,7 @@ public class JcrDocumentService implements DocumentService {
 	@Override
 	public ArrayList<Document> findDocuments(String query) {
 		
-		ArrayList<Document> documents = documentDao.queryDocuments(query);
+		ArrayList<Document> documents = documentDao.queryDocumentsByName(query);
 		
 		return documents;
 		

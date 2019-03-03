@@ -103,7 +103,7 @@ public class JcrDocumentDao implements DocumentDao {
 
 
 	@Override
-	public Document getDocument(String id) {
+	public Document getDocumentById(String id) {
 		Document document = new Document();
 		
 		
@@ -113,8 +113,8 @@ public class JcrDocumentDao implements DocumentDao {
 
 	//Query: http://drfits.com/jcr-sql2-query-with-examples/
 	@Override
-	public ArrayList<Document> queryDocuments(String queryString) {
-		//TODO refactor so specific type of query e.g this is by file name.
+	public ArrayList<Document> queryDocumentsByName(String documentNameQuery) {
+	
 		ArrayList<Document> documents = new ArrayList<>();
 		
 		
@@ -125,7 +125,7 @@ public class JcrDocumentDao implements DocumentDao {
 			javax.jcr.query.QueryManager queryManager = session.getWorkspace().getQueryManager();
 
 			
-            javax.jcr.query.Query query = queryManager.createQuery("SELECT p.* FROM [nt:file] AS p WHERE NAME(p) = '" + queryString + "'", Query.JCR_SQL2);
+            javax.jcr.query.Query query = queryManager.createQuery("SELECT p.* FROM [nt:file] AS p WHERE NAME(p) = '" + documentNameQuery + "'", Query.JCR_SQL2);
 			
 			javax.jcr.query.QueryResult result = query.execute();
 			
@@ -137,7 +137,7 @@ public class JcrDocumentDao implements DocumentDao {
 			    javax.jcr.Node node = nodeIter.nextNode();
 			    
 			    log.debug("Found document - name: %s, mimeType: %s");
-
+			    
 			    Document document = new Document();
 			    document.setName(node.getName());
 			    document.setMimeType(node.getProperty("jcr:content/jcr:mimeType").getValue().getString());
@@ -157,6 +157,30 @@ public class JcrDocumentDao implements DocumentDao {
 		
 		return documents;
 		
+	}
+
+	@Override
+	public Document getDocumentByName(String documentName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Document> getDocumentsByFolder(String folderPath) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Document> getDocumentVersionsById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Document> queryDocumentsByNameandType(String documentNameQuery, String mimeType) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
