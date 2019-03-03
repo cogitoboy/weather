@@ -111,8 +111,12 @@ public class JcrDocumentDao implements DocumentDao {
 	}
 
 
+	//Query: http://drfits.com/jcr-sql2-query-with-examples/
 	@Override
 	public ArrayList<Document> queryDocuments(String queryString) {
+		//TODO refactor so specific type of query e.g this is by file name.
+		ArrayList<Document> documents = new ArrayList<>();
+		
 		
 		try {
 		
@@ -121,7 +125,7 @@ public class JcrDocumentDao implements DocumentDao {
 			javax.jcr.query.QueryManager queryManager = session.getWorkspace().getQueryManager();
 
 			
-            javax.jcr.query.Query query = queryManager.createQuery(queryString, Query.JCR_SQL2);
+            javax.jcr.query.Query query = queryManager.createQuery("SELECT p.* FROM [nt:file] AS p WHERE NAME(p) = '" + queryString + "'", Query.JCR_SQL2);
 			
 			javax.jcr.query.QueryResult result = query.execute();
 			
@@ -131,28 +135,25 @@ public class JcrDocumentDao implements DocumentDao {
 			while ( nodeIter.hasNext() ) {
 
 			    javax.jcr.Node node = nodeIter.nextNode();
+			    
+			    log.debug("Found document - name: %s, mimeType: %s");
 
 			    Document document = new Document();
 			    document.setName(node.getName());
-			    
+			    document.setMimeType(node.getProperty("jcr:content/jcr:mimeType").getValue().getString());
+			    document.setPath(node.getParent().getPath());
+		
+			    documents.add(document);
+			    //TODO Transfer_Binary_File_data
 			}
 			
 		} catch (RepositoryException e) {
-			// TODO Auto-generated catch block
+			// TODO Throw DTO exception
 			e.printStackTrace();
 		} finally {
 			
 			closeSession();
 		}
-		
-		
-		ArrayList<Document> documents = new ArrayList<>();
-		
-		Document document_1 = new Document();
-		document_1.setName("My Title");
-		document_1.setMimeType("jpg");
-		
-		documents.add(document_1);
 		
 		return documents;
 		

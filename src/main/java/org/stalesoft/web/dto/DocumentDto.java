@@ -32,6 +32,7 @@ public class DocumentDto implements BaseDto<Document>{
 
 		setTitle(document.getName());
 		setType(document.getMimeType());
+		
 	}
 	
 	

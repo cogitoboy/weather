@@ -92,7 +92,9 @@ public class DocumentController {
 
 		log.debug("Home requested for appName");
 
-		String query = "123";
+		String query = "MyFirstDocument";
+		
+		log.debug("Document search query: %s", query);
 
 		ArrayList<Document> documents = documentService.findDocuments(query);
 
