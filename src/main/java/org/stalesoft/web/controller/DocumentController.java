@@ -90,6 +90,7 @@ public class DocumentController {
 	@GetMapping("/app/document/search")
 	public String search(Model model) {
 
+		//TODO complete_search_workflow
 		log.debug("Home requested for appName");
 
 		String query = "MyFirstDocument";
