@@ -5,21 +5,23 @@ import java.io.InputStream;
 
 public class Document {
 
+	public static final String ROOT = "/";
+	
 	public Document() {
-		this.folder = new Folder();
-		this.folder.setFolderName(Folder.ROOT);
+		
 	}
 
-	public Document(Folder folder) {
+	public Document(String path) {
+		assert (path != null);
+		assert ("".equalsIgnoreCase(path));
 		
-		assert(folder != null);
+		this.path = path;
 		
-		this.folder = folder;
 	}
 	
-	private Folder folder;
+	private String path = Document.ROOT;
 	private String name;
-	private Integer mimeType;
+	private String mimeType;
 	private InputStream inputStream;
 	
 	public String getName() {
@@ -31,20 +33,20 @@ public class Document {
 	}
 	
 	
-	public Integer getMimeType() {
+	public String getMimeType() {
 		return mimeType;
 	}
 	
-	public void setMimeType(Integer mimeType) {
+	public void setMimeType(String mimeType) {
 		this.mimeType = mimeType;
 	}
 	
-	public Folder getFolder() {
-		return folder;
+	public String getPath() {
+		return path;
 	}
 	
-	public void setFolder(Folder folder) {
-		this.folder = folder;
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 	public InputStream getInputStream() {

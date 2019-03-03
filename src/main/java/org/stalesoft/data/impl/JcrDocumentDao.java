@@ -10,6 +10,7 @@ import javax.jcr.Session;
 import javax.jcr.SimpleCredentials;
 import javax.jcr.query.Query;
 
+import org.apache.jackrabbit.commons.JcrUtils;
 import org.apache.jackrabbit.core.RepositoryImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,30 +53,34 @@ public class JcrDocumentDao implements DocumentDao {
 	
 	}
 	
-	private Node getOrCreateFolderNode(String xpath) throws RepositoryException {
+	private Node getFolder(String xpath) throws RepositoryException {
 		
 		Node rootNode = session.getRootNode();
 		
-		return rootNode.getNode(xpath);
+		//TODO externalize the jcr names
+		Node folderNode = JcrUtils.getOrCreateByPath(rootNode, xpath, false, "nt:folder", "nt:folder", true);
 		
+		return folderNode;
 		
 	}
 	
 	@Override
 	public void saveDocument(Document document) {
 		
-		openSession();
+		openSession();//TODO AOP? Some other approach  to opening and closing session. Transactions etc.  Some cleverness needed.
 		
 		
-		String folderXpath = document.getFolder().getXpath();
+		String path = document.getPath();
+		
+		assert(path != null);
+		assert("".equals(path));
 		
 		try {
-			Node folder = getOrCreateFolderNode(folderXpath);
+			Node folder = getFolder(path);
 			
 			Node documentNode = folder.addNode(document.getName(), "nt:file");
 			Node contentNode = documentNode.addNode("jcr:content","nt:resource");
 			
-			//I seem to need an input stream to write a file
 			Binary binary = session.getValueFactory().createBinary(document.getInputStream());
 			
 			contentNode.setProperty("jcr:data", binary);
@@ -85,6 +90,7 @@ public class JcrDocumentDao implements DocumentDao {
 			session.save();
 			
 		} catch (RepositoryException e) {
+			//TODO need to throw a dao exception
 			e.printStackTrace();
 		} finally {
 			closeSession();
@@ -141,7 +147,7 @@ public class JcrDocumentDao implements DocumentDao {
 		
 		Document document_1 = new Document();
 		document_1.setName("My Title");
-		document_1.setMimeType(2);
+		document_1.setMimeType("jpg");
 		
 		documents.add(document_1);
 		

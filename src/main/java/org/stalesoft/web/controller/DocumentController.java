@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.stalesoft.model.Document;
+import org.stalesoft.model.Folder;
 import org.stalesoft.service.DocumentService;
 import org.stalesoft.web.dto.DocumentDto;
 import org.stalesoft.web.dto.DocumentListDto;
@@ -69,9 +70,12 @@ public class DocumentController {
 		
 		// TODO: should have other form parameters to fill out the document object.
 		// for now just trying to get the file itself uploaded and saved.
-		
+	
 		document.setInputStream(documentInputStream);
-
+		document.setPath("testupload");
+		document.setName("MyFirstDocument");
+		document.setMimeType("jpg");
+		
 		documentService.addDocument(document);
 		
 		return returnMessage;

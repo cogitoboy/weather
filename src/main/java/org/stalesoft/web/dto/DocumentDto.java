@@ -28,21 +28,10 @@ public class DocumentDto implements BaseDto<Document>{
 	}
 
 	@Override
-	public void add(Document model) {
+	public void add(Document document) {
 
-		setTitle(model.getName());
-
-		// TODO: needs to be an enum 
-		if (model.getMimeType() != null) {
-			switch (model.getMimeType()) {
-
-			case 1:
-				setType("Title One");
-			default:
-				setType("Unknown");
-
-			}
-		}
+		setTitle(document.getName());
+		setType(document.getMimeType());
 	}
 	
 	
