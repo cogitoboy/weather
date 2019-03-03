@@ -46,13 +46,10 @@ public class DocumentController {
 	 * @return
 	 */
 	
-	//TODO: Need to consider the return type.  It is for the Webpage, it is not a rest
 	@RequestMapping(value = "/app/document", method = RequestMethod.POST)
-	public @ResponseBody String uploadDocument(@RequestParam("file") MultipartFile uploadDocument) {
+	public String uploadDocument(@RequestParam("file") MultipartFile uploadDocument, Model model) {
 		//TODO Log all incoming parameters
 		
-		String returnMessage = "uploaded";
-
 		// TODO: Validate: e.g. uploadDocument != null, etc.
 
 		InputStream documentInputStream = null;
@@ -78,7 +75,15 @@ public class DocumentController {
 		
 		documentService.addDocument(document);
 		
-		return returnMessage;
+		ArrayList<Document> documents = documentService.findDocuments(document.getPath());//find all the documents in the path
+		
+		DocumentListDto documentList  = new DocumentListDto();
+		documentList.add(documents);
+		
+		//TODO need to externalize the attribute names
+		model.addAttribute("results", documentList);
+		
+		return "app/search";
 
 	}
 

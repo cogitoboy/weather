@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository;
 import org.stalesoft.data.DocumentDao;
 import org.stalesoft.model.Document;
 
+//TODO Make a database repository
 @Repository("documentDao")
 public class JcrDocumentDao implements DocumentDao {
 	
@@ -34,6 +35,7 @@ public class JcrDocumentDao implements DocumentDao {
 		this.repository = jcrRespository;
 	}
 	
+	//TODO Real session authentication
 	protected void openSession() {
 		
 		try {
@@ -41,7 +43,7 @@ public class JcrDocumentDao implements DocumentDao {
 			session = repository.login(new SimpleCredentials("admin", "superSecret!".toCharArray()));
 			
 		} catch (RepositoryException e) {
-			// TODO Auto-generated catch block
+			// TODO Throw a DTO exception
 			e.printStackTrace();
 		}
 		
@@ -78,6 +80,7 @@ public class JcrDocumentDao implements DocumentDao {
 		try {
 			Node folder = getFolder(path);
 			
+			//TODO: Add versioning https://wiki.apache.org/jackrabbit/ExamplesPage
 			Node documentNode = folder.addNode(document.getName(), "nt:file");
 			Node contentNode = documentNode.addNode("jcr:content","nt:resource");
 			
