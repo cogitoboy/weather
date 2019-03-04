@@ -87,7 +87,7 @@ public class DocumentController {
 		document.setMimeType(mimeType);
 		
 		documentService.addDocument(document);
-		
+		//Getting the results from the location the document was saved.
 		ArrayList<Document> documents = documentService.findDocuments(document.getPath());
 		
 		DocumentListDto documentList  = new DocumentListDto();
