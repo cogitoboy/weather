@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +23,7 @@ import org.stalesoft.model.Folder;
 import org.stalesoft.service.DocumentService;
 import org.stalesoft.web.dto.DocumentDto;
 import org.stalesoft.web.dto.DocumentListDto;
+import org.stalesoft.web.dto.SearchDto;
 
 @Controller
 public class DocumentController {
@@ -30,12 +33,16 @@ public class DocumentController {
 
 	private static Logger log = LoggerFactory.getLogger(DocumentController.class);
 
+	
 	@GetMapping("/app/document")
 	public String home(Model model) {
 
-		log.debug("Home requested for appName");
-
-		return "app/document";
+		DocumentListDto documentList  = new DocumentListDto();
+		
+		model.addAttribute("results", documentList);
+		
+		return "app/documents";
+		
 	}
 
 	/**
@@ -46,7 +53,8 @@ public class DocumentController {
 	 * @return
 	 */
 	
-	@RequestMapping(value = "/app/document", method = RequestMethod.POST)
+	//RequestMapping(value = "/app/document", method = RequestMethod.POST)
+	@PostMapping("/app/document")
 	public String uploadDocument(@RequestParam("file") MultipartFile uploadDocument, Model model) {
 		//TODO Log all incoming parameters
 		
@@ -65,17 +73,22 @@ public class DocumentController {
 
 		Document document = new Document();
 		
-		// TODO: should have other form parameters to fill out the document object.
-		// for now just trying to get the file itself uploaded and saved.
-	
+		// TODO: a complete set of document parameters.
+		
 		document.setInputStream(documentInputStream);
 		document.setPath("testupload");
-		document.setName("MyFirstDocument");
-		document.setMimeType("jpg");
+		document.setName(uploadDocument.getOriginalFilename());
+		
+		//Extract the mimetype  //TODO utitlity method
+		String mimeType = uploadDocument.getOriginalFilename();
+		mimeType = mimeType.substring(mimeType.lastIndexOf(".") + 1);
+		mimeType = mimeType.toLowerCase();
+		
+		document.setMimeType(mimeType);
 		
 		documentService.addDocument(document);
 		
-		ArrayList<Document> documents = documentService.findDocuments(document.getPath());//find all the documents in the path
+		ArrayList<Document> documents = documentService.findDocuments(document.getPath());
 		
 		DocumentListDto documentList  = new DocumentListDto();
 		documentList.add(documents);
@@ -83,28 +96,24 @@ public class DocumentController {
 		//TODO need to externalize the attribute names
 		model.addAttribute("results", documentList);
 		
-		return "app/search";
+		return "app/documents";
 
 	}
 
-	@GetMapping("/app/document/search")
-	public String search(Model model) {
+	@PostMapping("/app/document/search")
+	public String searchDocuments(@ModelAttribute("search") SearchDto searchDto, Model model) {
 
-		//TODO complete_search_workflow
-		log.debug("Home requested for appName");
-
-		String query = "MyFirstDocument";
-		
-		log.debug("Document search query: %s", query);
-
-		ArrayList<Document> documents = documentService.findDocuments(query);
+		//TODO validation
+		//TODO search via wild cards
+		//TODO search all attributes
+		ArrayList<Document> documents = documentService.findDocuments(searchDto.getQuery());
 
 		DocumentListDto documentList = new DocumentListDto();
 		documentList.add(documents);
 
 		model.addAttribute("results", documentList);
 
-		return "app/search";
+		return "app/documents";
 	}
 
 	@GetMapping("/app/document/detail")
@@ -117,5 +126,10 @@ public class DocumentController {
 		documentService.getDocument(documentId);
 
 		return "app/document";
+	}
+	
+	@ModelAttribute(value="search")
+	public SearchDto getSearchDto() {
+		return new SearchDto();
 	}
 }
