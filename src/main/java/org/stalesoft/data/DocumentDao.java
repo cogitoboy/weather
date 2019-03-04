@@ -11,6 +11,6 @@ public interface DocumentDao {
 	public Document getDocumentByName(String documentName);
 	public ArrayList<Document> getDocumentsByFolder(String folderPath);
 	public ArrayList<Document> getDocumentVersionsById(String id);
-	public ArrayList<Document> queryDocumentsByName(String documentNameQuery);
-	public ArrayList<Document> queryDocumentsByNameandType(String documentNameQuery, String mimeType);
+	public ArrayList<Document> queryDocuments(String documentNameQuery);
 }
+	

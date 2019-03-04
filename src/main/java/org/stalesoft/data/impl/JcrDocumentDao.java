@@ -24,8 +24,7 @@ import org.stalesoft.model.Document;
 public class JcrDocumentDao implements DocumentDao {
 	
 	private static Logger log = LoggerFactory.getLogger(JcrDocumentDao.class);
-
-
+	
 	private javax.jcr.Repository repository;
 	private Session session;
 	
@@ -70,7 +69,9 @@ public class JcrDocumentDao implements DocumentDao {
 	public void saveDocument(Document document) {
 		
 		openSession();//TODO AOP? Some other approach  to opening and closing session. Transactions etc.  Some cleverness needed.
-		
+		assert(document.getInputStream() != null);
+		assert(document.getMimeType() != null);
+		assert(document.getName() != null);
 		
 		String path = document.getPath();
 		
@@ -80,6 +81,7 @@ public class JcrDocumentDao implements DocumentDao {
 		try {
 			Node folder = getFolder(path);
 			
+			//TODO: need to add a UUID
 			//TODO: Add versioning https://wiki.apache.org/jackrabbit/ExamplesPage
 			Node documentNode = folder.addNode(document.getName(), "nt:file");
 			Node contentNode = documentNode.addNode("jcr:content","nt:resource");
@@ -113,7 +115,7 @@ public class JcrDocumentDao implements DocumentDao {
 
 	//Query: http://drfits.com/jcr-sql2-query-with-examples/
 	@Override
-	public ArrayList<Document> queryDocumentsByName(String documentNameQuery) {
+	public ArrayList<Document> queryDocuments(String queryString) {
 	
 		ArrayList<Document> documents = new ArrayList<>();
 		
@@ -124,8 +126,9 @@ public class JcrDocumentDao implements DocumentDao {
 			
 			javax.jcr.query.QueryManager queryManager = session.getWorkspace().getQueryManager();
 
+			String sql1 = "SELECT p.* FROM [jcr:content] AS p WHERE  p.[jcr:mimeType] like '%" + queryString.toLowerCase() + "%'";
 			
-            javax.jcr.query.Query query = queryManager.createQuery("SELECT p.* FROM [nt:file] AS p WHERE NAME(p) = '" + documentNameQuery + "'", Query.JCR_SQL2);
+            javax.jcr.query.Query query = queryManager.createQuery(sql1, Query.JCR_SQL2);
 			
 			javax.jcr.query.QueryResult result = query.execute();
 			
@@ -148,7 +151,7 @@ public class JcrDocumentDao implements DocumentDao {
 			}
 			
 		} catch (RepositoryException e) {
-			// TODO Throw DTO exception
+			// TODO Throw DTO exception, handle gracefully
 			e.printStackTrace();
 		} finally {
 			
@@ -161,8 +164,48 @@ public class JcrDocumentDao implements DocumentDao {
 
 	@Override
 	public Document getDocumentByName(String documentName) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Document document = null;
+		
+		try {
+		
+			openSession();
+			
+			javax.jcr.query.QueryManager queryManager = session.getWorkspace().getQueryManager();
+
+			String sql1 = "SELECT p.* FROM [nt:file] AS p WHERE NAME(p) LIKE '" + documentName + "'";
+			
+            javax.jcr.query.Query query = queryManager.createQuery(sql1, Query.JCR_SQL2);
+			
+			javax.jcr.query.QueryResult result = query.execute();
+			
+			
+			javax.jcr.NodeIterator nodeIter = result.getNodes();
+
+			
+			
+			if ( nodeIter.hasNext() ) {
+
+			    javax.jcr.Node node = nodeIter.nextNode();
+			    
+			    log.debug("Found document - name: %s, mimeType: %s");
+			    
+			    document = new Document();
+			    document.setName(node.getName());
+			    document.setMimeType(node.getProperty("jcr:content/jcr:mimeType").getValue().getString());
+			    document.setPath(node.getParent().getPath());
+			    //TODO Transfer_Binary_File_data
+			}
+			
+		} catch (RepositoryException e) {
+			// TODO Throw DTO exception
+			e.printStackTrace();
+		} finally {
+			
+			closeSession();
+		}
+		
+		return document;
 	}
 
 	@Override
@@ -176,12 +219,5 @@ public class JcrDocumentDao implements DocumentDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public ArrayList<Document> queryDocumentsByNameandType(String documentNameQuery, String mimeType) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
+	
 }

@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Sun Mar 03 11:11:41 MST 2019:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0169-44c1-1ffb-00000dbfbfe0 
-on database directory /Users/user/Documents/projects/stalewebapp/jackrabbit/version/db with class loader sun.misc.Launcher$AppClassLoader@18b4aac2 
+Sun Mar 03 19:35:34 MST 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0169-468e-7288-00000e088940 
+on database directory /Users/user/Documents/projects/stalewebapp/jackrabbit/version/db with class loader sun.misc.Launcher$AppClassLoader@764c12b6 
 Loaded from file:/Users/user/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_191-b12
@@ -12,9 +12,9 @@ os.version=10.14.3
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Sun Mar 03 11:11:41 MST 2019:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 888c4022-0169-44c1-1ffb-00000dbfbfe0 
-on database directory /Users/user/Documents/projects/stalewebapp/jackrabbit/workspaces/default/db with class loader sun.misc.Launcher$AppClassLoader@18b4aac2 
+Sun Mar 03 19:35:34 MST 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 888c4022-0169-468e-7288-00000e088940 
+on database directory /Users/user/Documents/projects/stalewebapp/jackrabbit/workspaces/default/db with class loader sun.misc.Launcher$AppClassLoader@764c12b6 
 Loaded from file:/Users/user/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_191-b12
@@ -25,9 +25,9 @@ os.version=10.14.3
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Sun Mar 03 11:11:42 MST 2019:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 6965c036-0169-44c1-1ffb-00000dbfbfe0 
-on database directory /Users/user/Documents/projects/stalewebapp/jackrabbit/workspaces/security/db with class loader sun.misc.Launcher$AppClassLoader@18b4aac2 
+Sun Mar 03 19:35:35 MST 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 6965c036-0169-468e-7288-00000e088940 
+on database directory /Users/user/Documents/projects/stalewebapp/jackrabbit/workspaces/security/db with class loader sun.misc.Launcher$AppClassLoader@764c12b6 
 Loaded from file:/Users/user/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_191-b12

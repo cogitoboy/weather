@@ -90,11 +90,23 @@
 				       <br/>
 				       <input type="submit" value="upload" name="upload" id="upload"/>
 				    </form>
-				     
+				 
 				</div>
 				
 			</section>
 
+			<!-- thymeleaf-boot form submit https://medium.com/@grokwich/spring-boot-thymeleaf-html-form-handling-762ef0d51327 -->
+			<section class="feature sections">
+				<div class="container">
+				    <form action="#" th:action="@{/app/document/search}" th:object="${search}" method="post">
+				       <input type="text" th:field="*{query}"/> 
+				       
+				       <input type="submit"/>
+				    </form>
+				 
+				</div>
+				
+			</section>
 			<section class="feature sections">
 				<div class="container">
 					<div class="table">

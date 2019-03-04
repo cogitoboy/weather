@@ -32,7 +32,7 @@ public class JcrDocumentService implements DocumentService {
 	@Override
 	public ArrayList<Document> findDocuments(String query) {
 		
-		ArrayList<Document> documents = documentDao.queryDocumentsByName(query);
+		ArrayList<Document> documents = documentDao.queryDocuments(query);
 		
 		return documents;
 		
