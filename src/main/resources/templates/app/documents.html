@@ -83,54 +83,44 @@
                 </div>
             </header> <!--End of header -->
 
+			<section class="feature sections">
+				<div class="container">
+				    <form method="POST" th:action="@{/app/document}" enctype="multipart/form-data">
+				       <input type="file" name="file" id="file"/> 
+				       <br/>
+				       <input type="submit" value="upload" name="upload" id="upload"/>
+				    </form>
+				 
+				</div>
+				
+			</section>
 
+			<!-- thymeleaf-boot form submit https://medium.com/@grokwich/spring-boot-thymeleaf-html-form-handling-762ef0d51327 -->
+			<section class="feature sections">
+				<div class="container">
+				    <form action="#" th:action="@{/app/document/search}" th:object="${search}" method="post">
+				       <input type="text" th:field="*{query}"/> 
+				       
+				       <input type="submit"/>
+				    </form>
+				 
+				</div>
+				
+			</section>
 			<section class="feature sections">
 				<div class="container">
 					<div class="table">
+					    
 						<table>
-							<tr>
-								<th>CID</th>
-								<th>MEDICAID</th>
-								<th>TYPE</th>
-								<th>SENT</th>
-								<th>DOC</th>
-							</tr>
-							<tr>
-								<td>811011</td>
-								<td>12121212</td>
-								<td>REFERRAL</td>
-								<td>02/23/2018</td>
-							</tr>
-							<tr>
-								<td>811011</td>
-								<td>12121212</td>
-								<td>REFERRAL</td>
-								<td>02/23/2018</td>
-							</tr>
-							<tr>
-								<td>811011</td>
-								<td>12121212</td>
-								<td>REFERRAL</td>
-								<td>02/23/2018</td>
-							</tr>
-							<tr>
-								<td>811011</td>
-								<td>12121212</td>
-								<td>REFERRAL</td>
-								<td>02/23/2018</td>
-							</tr>
-							<tr>
-								<td>811011</td>
-								<td>12121212</td>
-								<td>REFERRAL</td>
-								<td>02/23/2018</td>
-							</tr>
-							<tr>
-								<td>811011</td>
-								<td>12121212</td>
-								<td>REFERRAL</td>
-								<td>02/23/2018</td>
-							</tr>
+								<tr>
+									<th>TITLE</th>
+									<th>TYPE</th>
+								</tr>
+						
+								<tr th:each="document : ${results.documents}">
+            						<td><span th:text="${document.title}"> Title </span></td>
+            						<td><span th:text="${document.type}"> Author </span></td>
+        						</tr>
 						</table>
 					</div>
 				</div>
