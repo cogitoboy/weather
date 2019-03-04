@@ -54,6 +54,8 @@ public class DocumentController {
 		//TODO Log all incoming parameters
 		
 		// TODO: Validate: e.g. uploadDocument != null, etc.
+		
+		log.debug("uploading a document");
 
 		InputStream documentInputStream = null;
 		
