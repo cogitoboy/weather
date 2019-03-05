@@ -253,7 +253,7 @@ public class JcrDocumentDao implements DocumentDao {
 			    document.setName(node.getName());
 			    document.setMimeType(node.getProperty("jcr:content/jcr:mimeType").getValue().getString());
 			    document.setPath(node.getParent().getPath());
-			    //TODO Transfer_Binary_File_data
+			    //TODO Display_Download_Binary_File_data
 			}
 			
 		} catch (RepositoryException e) {
