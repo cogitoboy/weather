@@ -7,7 +7,7 @@ import org.stalesoft.model.Document;
 public interface DocumentDao {
 
 	public void saveDocument(Document document);
-	public Document getDocumentById(String id);
+	public Document getDocumentByUuid(String uuid);
 	public Document getDocumentByName(String documentName);
 	public ArrayList<Document> getDocumentsByFolder(String folderPath);
 	public ArrayList<Document> getDocumentVersionsById(String id);

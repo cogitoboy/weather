@@ -3,11 +3,6 @@ package org.stalesoft.service.impl;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import javax.jcr.Repository;
-import javax.jcr.Session;
-import javax.jcr.SimpleCredentials;
-
-import org.apache.jackrabbit.core.RepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.stalesoft.data.DocumentDao;
@@ -25,7 +20,7 @@ public class JcrDocumentService implements DocumentService {
 	@Override
 	public Document getDocument(String id) {
 		
-		Document document = documentDao.getDocumentById(id);
+		Document document = documentDao.getDocumentByUuid(id);
 		
 		return document;
 	}
