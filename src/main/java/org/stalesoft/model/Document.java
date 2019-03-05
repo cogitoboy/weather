@@ -21,7 +21,10 @@ public class Document {
 	private String path = Document.ROOT;
 	private String name;
 	private String mimeType;
+	private String uuid;
+	
 	private InputStream inputStream;
+	
 	
 	public String getName() {
 		return name;
@@ -54,6 +57,14 @@ public class Document {
 
 	public void setInputStream(InputStream inputStream) {
 		this.inputStream = inputStream;
+	}
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 	
 	

@@ -98,6 +98,7 @@ public class JcrDocumentDao implements DocumentDao {
 		assert(document.getInputStream() != null);
 		assert(document.getMimeType() != null);
 		assert(document.getName() != null);
+		assert(document.getUuid() != null);
 		
 		String path = document.getPath();
 		
@@ -115,9 +116,10 @@ public class JcrDocumentDao implements DocumentDao {
 			Binary binary = session.getValueFactory().createBinary(document.getInputStream());
 			
 			contentNode.addMixin("doc:stalesoft");
-			contentNode.setProperty("doc:name", document.getName());
+			contentNode.setProperty("doc:name", document.getName().toLowerCase());
+			contentNode.setProperty("doc:uuid", document.getUuid());
 			contentNode.setProperty("jcr:data", binary);
-			contentNode.setProperty("jcr:mimeType", document.getMimeType());
+			contentNode.setProperty("jcr:mimeType", document.getMimeType().toLowerCase());
 			contentNode.setProperty("jcr:lastModified", Calendar.getInstance());
 			
 			session.save();
@@ -157,7 +159,10 @@ public class JcrDocumentDao implements DocumentDao {
 			String sql1 = "SELECT p.* FROM [nt:resource] AS p WHERE  "
 					+ "p.[jcr:mimeType] like '%" + queryString.toLowerCase() + "%' "
 					+ "OR "
-					+ "p.[doc:name] like '%" + queryString.toLowerCase() + "%' ";
+					+ "p.[doc:name] like '%" + queryString.toLowerCase() + "%' "
+					+ "OR "
+					+ "p.[doc:uuid] like '%" + queryString.toLowerCase() + "%' "
+					;
 			
 			
 					
@@ -169,7 +174,7 @@ public class JcrDocumentDao implements DocumentDao {
 			
 			javax.jcr.NodeIterator nodeIter = result.getNodes();
 			
-			log.debug("Query found %d documents", nodeIter.getSize());
+			log.debug("Query {} found {} documents", sql1, nodeIter.getSize());
 
 			while ( nodeIter.hasNext() ) {
 
@@ -181,10 +186,10 @@ public class JcrDocumentDao implements DocumentDao {
 			    document.setName(getNodeProperty(node,"doc:name"));
 			    document.setMimeType(getNodeProperty(node, "jcr:mimeType"));
 			    document.setPath(node.getParent().getPath());
+			    document.setUuid(getNodeProperty(node,"doc:uuid"));
 		
 			    documents.add(document);
-			    
-			    //TODO Transfer_Binary_File_data https://stackoverflow.com/questions/33087470/jackrabbit-file-storage
+			   
 			}
 			
 		} catch (RepositoryException e) {
@@ -253,7 +258,7 @@ public class JcrDocumentDao implements DocumentDao {
 			    document.setName(node.getName());
 			    document.setMimeType(node.getProperty("jcr:content/jcr:mimeType").getValue().getString());
 			    document.setPath(node.getParent().getPath());
-			    //TODO Display_Download_Binary_File_data
+			    //TODO Display_Download_Binary_File_data https://stackoverflow.com/questions/33087470/jackrabbit-file-storage, https://stackoverflow.com/questions/16652760/return-generated-pdf-using-spring-mvc
 			}
 			
 		} catch (RepositoryException e) {

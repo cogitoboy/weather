@@ -76,14 +76,16 @@ public class DocumentController {
 		document.setPath("testupload");
 		document.setName(uploadDocument.getOriginalFilename());
 		
-		//Extract the mimetype  //TODO utitlity method
+		//Extract the mimetype  
+		//TODO utitlity method
 		String mimeType = uploadDocument.getOriginalFilename();
 		mimeType = mimeType.substring(mimeType.lastIndexOf(".") + 1);
 		mimeType = mimeType.toLowerCase();
 		
 		document.setMimeType(mimeType);
 		
-		documentService.addDocument(document);
+		String uuid = documentService.addDocument(document);
+		
 		//Getting the results from the location the document was saved.
 		ArrayList<Document> documents = documentService.findDocuments(document.getPath());
 		

@@ -115,11 +115,13 @@
 								<tr>
 									<th>TITLE</th>
 									<th>TYPE</th>
+									<th> </th>
 								</tr>
 						
 								<tr th:each="document : ${results.documents}">
             						<td><span th:text="${document.title}"> Title </span></td>
             						<td><span th:text="${document.type}"> Author </span></td>
+            						<td><span th:text="${document.uuid}">UUID </span></td>
         						</tr>
 						</table>
 					</div>
