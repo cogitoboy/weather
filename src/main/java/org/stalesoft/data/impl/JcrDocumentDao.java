@@ -1,16 +1,26 @@
 package org.stalesoft.data.impl;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.jcr.Binary;
 import javax.jcr.Node;
+import javax.jcr.PathNotFoundException;
+import javax.jcr.Property;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.SimpleCredentials;
+import javax.jcr.nodetype.NodeType;
 import javax.jcr.query.Query;
 
 import org.apache.jackrabbit.commons.JcrUtils;
+import org.apache.jackrabbit.commons.cnd.CndImporter;
+import org.apache.jackrabbit.commons.cnd.ParseException;
 import org.apache.jackrabbit.core.RepositoryImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,9 +50,25 @@ public class JcrDocumentDao implements DocumentDao {
 		try {
 			
 			session = repository.login(new SimpleCredentials("admin", "superSecret!".toCharArray()));
+			URL x = getClass().getClassLoader().getResource("static/cnd/stalesoft.cnd");
+			File file = new File(x.getFile());
+			FileReader fileReader = new FileReader(file);
+			NodeType[] nodeTypes = CndImporter.registerNodeTypes(fileReader, session, true);
+			for (NodeType nt : nodeTypes) {
+                System.out.println("Registered: " + nt.getName());
+			}
 			
 		} catch (RepositoryException e) {
 			// TODO Throw a DTO exception
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -88,6 +114,8 @@ public class JcrDocumentDao implements DocumentDao {
 			
 			Binary binary = session.getValueFactory().createBinary(document.getInputStream());
 			
+			contentNode.addMixin("doc:stalesoft");
+			contentNode.setProperty("doc:name", document.getName());
 			contentNode.setProperty("jcr:data", binary);
 			contentNode.setProperty("jcr:mimeType", document.getMimeType());
 			contentNode.setProperty("jcr:lastModified", Calendar.getInstance());
@@ -126,7 +154,13 @@ public class JcrDocumentDao implements DocumentDao {
 			
 			javax.jcr.query.QueryManager queryManager = session.getWorkspace().getQueryManager();
 
-			String sql1 = "SELECT p.* FROM [jcr:content] AS p WHERE  p.[jcr:mimeType] like '%" + queryString.toLowerCase() + "%'";
+			String sql1 = "SELECT p.* FROM [nt:resource] AS p WHERE  "
+					+ "p.[jcr:mimeType] like '%" + queryString.toLowerCase() + "%' "
+					+ "OR "
+					+ "p.[doc:name] like '%" + queryString.toLowerCase() + "%' ";
+			
+			
+					
 			
             javax.jcr.query.Query query = queryManager.createQuery(sql1, Query.JCR_SQL2);
 			
@@ -134,6 +168,8 @@ public class JcrDocumentDao implements DocumentDao {
 			
 			
 			javax.jcr.NodeIterator nodeIter = result.getNodes();
+			
+			log.debug("Query found %d documents", nodeIter.getSize());
 
 			while ( nodeIter.hasNext() ) {
 
@@ -142,12 +178,13 @@ public class JcrDocumentDao implements DocumentDao {
 			    log.debug("Found document - name: %s, mimeType: %s");
 			    
 			    Document document = new Document();
-			    document.setName(node.getName());
-			    document.setMimeType(node.getProperty("jcr:content/jcr:mimeType").getValue().getString());
+			    document.setName(getNodeProperty(node,"doc:name"));
+			    document.setMimeType(getNodeProperty(node, "jcr:mimeType"));
 			    document.setPath(node.getParent().getPath());
 		
 			    documents.add(document);
-			    //TODO Transfer_Binary_File_data
+			    
+			    //TODO Transfer_Binary_File_data https://stackoverflow.com/questions/33087470/jackrabbit-file-storage
 			}
 			
 		} catch (RepositoryException e) {
@@ -162,6 +199,28 @@ public class JcrDocumentDao implements DocumentDao {
 		
 	}
 
+	
+	private String getNodeProperty(Node node, String propertyName) throws RepositoryException  {
+		
+		String value = null;
+		
+		Property property = null;
+		try {
+			
+			property = node.getProperty(propertyName);
+			
+		} catch (PathNotFoundException e) {
+			//Is okay if not found
+			log.debug(e.getMessage(), e);
+			
+		}
+		
+		if (property != null) {
+			value = property.getValue().getString();
+		}
+		
+		return value;
+	}
 	@Override
 	public Document getDocumentByName(String documentName) {
 
@@ -194,7 +253,7 @@ public class JcrDocumentDao implements DocumentDao {
 			    document.setName(node.getName());
 			    document.setMimeType(node.getProperty("jcr:content/jcr:mimeType").getValue().getString());
 			    document.setPath(node.getParent().getPath());
-			    //TODO Transfer_Binary_File_data
+			    //TODO Display_Download_Binary_File_data
 			}
 			
 		} catch (RepositoryException e) {
