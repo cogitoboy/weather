@@ -154,12 +154,12 @@ public class JcrDocumentDao implements DocumentDao {
 			
 			javax.jcr.query.QueryManager queryManager = session.getWorkspace().getQueryManager();
 
-			/*String sql1 = "SELECT p.* FROM [nt:resource] AS p WHERE  "
+			String sql1 = "SELECT p.* FROM [nt:resource] AS p WHERE  "
 					+ "p.[jcr:mimeType] like '%" + queryString.toLowerCase() + "%' "
 					+ "OR "
-					+ "p.[doc:name] like '%" + queryString.toLowerCase() + "%' ";*/
+					+ "p.[doc:name] like '%" + queryString.toLowerCase() + "%' ";
 			
-			String sql1 = "select p.* from [nt:resource] as p where contains([jcr:data], 'dale'";
+			
 					
 			
             javax.jcr.query.Query query = queryManager.createQuery(sql1, Query.JCR_SQL2);
@@ -200,11 +200,21 @@ public class JcrDocumentDao implements DocumentDao {
 	}
 
 	
-	private String getNodeProperty(Node node, String propertyName) throws PathNotFoundException, RepositoryException {
+	private String getNodeProperty(Node node, String propertyName) throws RepositoryException  {
 		
 		String value = null;
 		
-		Property property = node.getProperty(propertyName);//.getValue().getString()
+		Property property = null;
+		try {
+			
+			property = node.getProperty(propertyName);
+			
+		} catch (PathNotFoundException e) {
+			//Is okay if not found
+			log.debug(e.getMessage(), e);
+			
+		}
+		
 		if (property != null) {
 			value = property.getValue().getString();
 		}
