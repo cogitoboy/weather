@@ -154,10 +154,13 @@ public class JcrDocumentDao implements DocumentDao {
 			
 			javax.jcr.query.QueryManager queryManager = session.getWorkspace().getQueryManager();
 
-			String sql1 = "SELECT p.* FROM [nt:resource] AS p WHERE  "
+			/*String sql1 = "SELECT p.* FROM [nt:resource] AS p WHERE  "
 					+ "p.[jcr:mimeType] like '%" + queryString.toLowerCase() + "%' "
-							+ "OR "
-							+ "p.[doc:name] like '%" + queryString.toLowerCase() + "%' ";
+					+ "OR "
+					+ "p.[doc:name] like '%" + queryString.toLowerCase() + "%' ";*/
+			
+			String sql1 = "select p.* from [nt:resource] as p where contains([jcr:data], 'dale'";
+					
 			
             javax.jcr.query.Query query = queryManager.createQuery(sql1, Query.JCR_SQL2);
 			
