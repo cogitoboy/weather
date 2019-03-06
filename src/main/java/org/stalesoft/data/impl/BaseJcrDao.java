@@ -83,6 +83,7 @@ public class BaseJcrDao {
 		ArrayList<Document> documents = executeDocumentSetQuery(queryString);
 		
 		if (documents.size() > 1) {
+			//TODO throw DAOException
 			throw new RuntimeException("Excpeted on document, found " + documents.size());
 		}
 		
@@ -95,6 +96,8 @@ public class BaseJcrDao {
 	}
 
 	protected ArrayList<Document> executeDocumentSetQuery(String queryString) {
+		
+		log.debug("executing query: {}", queryString);
 
 		ArrayList<Document> documents = new ArrayList<>();
 
@@ -117,6 +120,7 @@ public class BaseJcrDao {
 				document.setMimeType(getNodeProperty(node, "jcr:mimeType"));
 				document.setPath(node.getParent().getPath());
 				document.setUuid(getNodeProperty(node, "doc:uuid"));
+				document.setInputStream(JcrUtils.readFile(node));
 
 				documents.add(document);
 

@@ -19,9 +19,9 @@ public class JcrDocumentDao extends BaseJcrDao implements DocumentDao {
 
 	private static Logger log = LoggerFactory.getLogger(JcrDocumentDao.class);
 
-	protected static String FULL_QUERY_SQL = "SELECT p.* FROM [nt:resource] AS p "
+	protected static String FULL_QUERY_SQL =  "SELECT p.* FROM [nt:resource] AS p "
 							+ "WHERE p.[jcr:mimeType] like '%%%1$s%%' OR p.[doc:name] like '%%%1$s%%' OR p.[doc:uuid] like '%%%1$s%%' ";
-	protected static String GET_BY_UUID_SQL = "SELECT p.* FROM [nt:resource] AS p WHERE p.[doc:uuid] = '%%%1$s%%' ";
+	protected static String GET_BY_UUID_SQL = "SELECT p.* FROM [nt:resource] AS p WHERE p.[doc:uuid] LIKE '%%%1$s%%' ";
 	protected static String GET_BY_NAME_SQL = "SELECT p.* FROM [nt:file] AS p WHERE NAME(p) LIKE '%%%1$s%%'";
 
 	@Override

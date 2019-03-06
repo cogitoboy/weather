@@ -18,9 +18,9 @@ public class JcrDocumentService implements DocumentService {
 	
 
 	@Override
-	public Document getDocument(String id) {
+	public Document getDocument(String uuid) {
 		
-		Document document = documentDao.getDocumentByUuid(id);
+		Document document = documentDao.getDocumentByUuid(uuid);
 		
 		return document;
 	}

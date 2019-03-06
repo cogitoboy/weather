@@ -113,15 +113,17 @@
 					    
 						<table>
 								<tr>
-									<th>TITLE</th>
+									<th>NAME</th>
 									<th>TYPE</th>
 									<th>UUID </th>
+									<th>DOWNLOAD</th>
 								</tr>
 						
 								<tr th:each="document : ${results.documents}">
-            						<td><span th:text="${document.title}"> Title </span></td>
-            						<td><span th:text="${document.type}"> Author </span></td>
-            						<td><span th:text="${document.uuid}">UUID </span></td>
+            						<td><span th:text="${document.title}"></span></td>
+            						<td><span th:text="${document.type}"></span></td>
+            						<td><span th:text="${document.uuid}"></span></td>
+            						<td><a th:href="@{'/app/document/download/'+${document.uuid}}">download</a>
         						</tr>
 						</table>
 					</div>

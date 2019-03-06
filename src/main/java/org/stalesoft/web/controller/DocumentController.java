@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import org.apache.tomcat.util.http.fileupload.util.mime.MimeUtility;
 import org.slf4j.Logger;
@@ -22,6 +23,7 @@ import org.springframework.util.MimeType;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -131,25 +133,41 @@ public class DocumentController {
 		return "app/documents";
 	}
 	
-	@GetMapping("/app/document/download")
-	public ResponseEntity<byte[]> downloadDocument(Model model) {
-		//https://stackoverflow.com/questions/16652760/return-generated-pdf-using-spring-mvc
-		//https://stackoverflow.com/questions/33087470/jackrabbit-file-storage
-		//https://www.baeldung.com/convert-input-stream-to-array-of-bytes
-		Document document = null;
-		document.getInputStream()
+	/**
+	 * //https://stackoverflow.com/questions/16652760/return-generated-pdf-using-spring-mvc
+	 * //https://stackoverflow.com/questions/33087470/jackrabbit-file-storage
+	 * //https://www.baeldung.com/convert-input-stream-to-array-of-bytes
+	 * //https://stackoverflow.com/questions/44743317/how-to-create-a-dynamic-link-with-thymeleaf-and-spring-boot
+	 */
+	
+	@GetMapping("/app/document/download/{uuid}")
+	public ResponseEntity<byte[]> downloadDocument(@PathVariable("uuid") String uuid,  Model model) {
 		
+
+		ResponseEntity<byte[]> response  = null;
 		
-		byte[] binaryDocument = new byte[document.getInputStream().available()];
-		document.getInputStream().read(binaryDocument);
-		
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.parseMediaType(document.getMimeType()));
-		headers.setContentDispositionFormData(document.getName(), document.getName());
-		headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
-		 
-		ResponseEntity<byte[]> response = new ResponseEntity<>(binaryDocument, headers, HttpStatus.OK);
-		
+		try {
+
+			Document document = documentService.getDocument(uuid);
+
+			byte[] binaryDocument;
+
+			binaryDocument = new byte[document.getInputStream().available()];
+
+			document.getInputStream().read(binaryDocument);
+
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.parseMediaType(document.getMimeType()));
+			headers.setContentDispositionFormData(document.getName(), document.getName());
+			headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+
+			response = new ResponseEntity<>(binaryDocument, headers, HttpStatus.OK);
+
+		} catch (IOException e) {
+			// TODO throw some PresentationException
+			e.printStackTrace();
+		}
+
 		return response;
 	}
 
