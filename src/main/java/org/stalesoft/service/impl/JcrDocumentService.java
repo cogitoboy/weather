@@ -1,12 +1,8 @@
 package org.stalesoft.service.impl;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
-import javax.jcr.Repository;
-import javax.jcr.Session;
-import javax.jcr.SimpleCredentials;
-
-import org.apache.jackrabbit.core.RepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.stalesoft.data.DocumentDao;
@@ -22,9 +18,9 @@ public class JcrDocumentService implements DocumentService {
 	
 
 	@Override
-	public Document getDocument(String id) {
+	public Document getDocument(String uuid) {
 		
-		Document document = documentDao.getDocumentById(id);
+		Document document = documentDao.getDocumentByUuid(uuid);
 		
 		return document;
 	}
@@ -39,8 +35,15 @@ public class JcrDocumentService implements DocumentService {
 	}
 
 	@Override
-	public void addDocument(Document document) {
+	public String addDocument(Document document) {
+		
+		assert(document.getUuid() == null);
+		
+		UUID uuid = UUID.randomUUID();
+		document.setUuid(uuid.toString());//UUID is each specific upload.
 		
 		documentDao.saveDocument(document);
+		
+		return uuid.toString();
 	}
 }
