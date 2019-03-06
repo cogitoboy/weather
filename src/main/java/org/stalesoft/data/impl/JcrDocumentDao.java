@@ -40,16 +40,12 @@ public class JcrDocumentDao extends BaseJcrDao implements DocumentDao {
 		assert ("".equals(path));
 
 		try {
-			Node folder = getFolder(path);
 
-			// TODO: need to add a UUID
-			// TODO: Add versioning https://wiki.apache.org/jackrabbit/ExamplesPage
-			Node documentNode = folder.addNode(document.getName(), "nt:file");
-			Node contentNode = documentNode.addNode("jcr:content", "nt:resource");
-
+			Node documentNode = getDocumentNode(document.getPath(), document.getName());
+			Node contentNode = (Node)documentNode.getNodes().next();
+			
 			Binary binary = session.getValueFactory().createBinary(document.getInputStream());
-
-			contentNode.addMixin("doc:stalesoft");
+			
 			contentNode.setProperty("doc:name", document.getName().toLowerCase());
 			contentNode.setProperty("doc:uuid", document.getUuid());
 			contentNode.setProperty("jcr:data", binary);
