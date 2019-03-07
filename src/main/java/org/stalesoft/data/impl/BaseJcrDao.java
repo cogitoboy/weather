@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import javax.jcr.LoginException;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
 import javax.jcr.PathNotFoundException;
@@ -27,7 +26,6 @@ import org.apache.jackrabbit.commons.cnd.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.stalesoft.exception.DaoException;
 import org.stalesoft.model.Document;
 
 public class BaseJcrDao {
@@ -143,6 +141,32 @@ public class BaseJcrDao {
 		session.logout();
 
 	}
+	
+	protected Node getDocumentNode(String folder, String documentName) throws RepositoryException {
+		
+		
+		Node folderNode = getFolder(folder);
+		//Node documentNode = JcrUtils.getOrCreateByPath(folderNode, documentName, true, "nt:folder", "nt:file", false);
+		
+		
+		Node documentNode = null;
+		
+		if (folderNode.hasNode(documentName)) {
+			
+			documentNode = folderNode.getNode(documentName);
+			
+		} else {
+		
+			documentNode = folderNode.addNode(documentName, "nt:file");
+			Node contentNode = documentNode.addNode("jcr:content", "nt:resource");
+			contentNode.addMixin("doc:stalesoft");
+		}
+		
+		return documentNode;
+		
+	}
+	
+
 
 	protected Node getFolder(String xpath) throws RepositoryException {
 
