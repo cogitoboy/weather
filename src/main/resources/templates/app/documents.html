@@ -44,38 +44,50 @@
                     <div class="container">
                         <div class="row">
                             <div class="nave_menu">
-                                <nav class="navbar navbar-default">
-                                    <div class="container-fluid">
-                                        <!-- Brand and toggle get grouped for better mobile display -->
-                                        <div class="navbar-header">
-                                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                                <span class="sr-only">Toggle navigation</span>
-                                                <span class="icon-bar"></span>
-                                                <span class="icon-bar"></span>
-                                                <span class="icon-bar"></span>
-                                            </button>
-                                            <a class="navbar-brand" href="#home">
-                                               <span th:text="${results.fullContext}"></span>
-                                            </a>
-                                        </div>
+							<nav class="navbar navbar-default">
+								<div class="container-fluid">
+									<!-- Brand and toggle get grouped for better mobile display -->
+									<div class="navbar-header">
+										<button type="button" class="navbar-toggle collapsed"
+											data-toggle="collapse"
+											data-target="#bs-example-navbar-collapse-1"
+											aria-expanded="false">
+											<span class="sr-only">Toggle navigation</span> <span
+												class="icon-bar"></span> <span class="icon-bar"></span> <span
+												class="icon-bar"></span>
+										</button>
+										<div class="container">
+											<form action="#" th:action="@{/app/document/search}"
+												th:object="${search}" method="post">
+												<input type="text" th:field="*{query}" /> <input
+													type="hidden" th:value="${results.fullContext}"
+													name="fullContext" /> <input type="submit" />
+											</form>
 
-                                        <!-- Collect the nav links, forms, and other content for toggling -->
+										</div>
+										<!-- a class="navbar-brand" href="#home"> <span
+											th:text="${results.fullContext}"></span>
+										</a-->
+									</div>
+
+									<!-- Collect the nav links, forms, and other content for toggling -->
 
 
 
-                                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+									<div class="collapse navbar-collapse"
+										id="bs-example-navbar-collapse-1">
 
-                                            <ul class="nav navbar-nav navbar-right">
-                                                <li><a href="#home"></a></li>
-                                                
-                                            </ul>
+										<ul class="nav navbar-nav navbar-right">
+											<li><a href="#home"></a></li>
+
+										</ul>
 
 
-                                        </div>
+									</div>
 
-                                    </div>
-                                </nav>
-                            </div>	
+								</div>
+							</nav>
+						</div>	
                         </div>
 
                     </div>
@@ -83,7 +95,7 @@
                 </div>
             </header> <!--End of header -->
 
-			<section class="feature sections">
+			<!-- section class="feature sections">
 				<div class="container">
 				    <form method="POST" th:action="@{/app/document}" enctype="multipart/form-data">
 				       <input type="file" name="file" id="file"/> 
@@ -94,21 +106,27 @@
 				 
 				</div>
 				
-			</section>
+			</section-->
 
-			<!-- thymeleaf-boot form submit https://medium.com/@grokwich/spring-boot-thymeleaf-html-form-handling-762ef0d51327 -->
-			<section class="feature sections">
-				<div class="container">
-				    <form action="#" th:action="@{/app/document/search}" th:object="${search}" method="post">
-				       <input type="text" th:field="*{query}"/> 
-				       <input type="hidden" th:value="${results.fullContext}" name="fullContext"/>
-				       <input type="submit"/>
-				    </form>
-				 
+		<!-- thymeleaf-boot form submit https://medium.com/@grokwich/spring-boot-thymeleaf-html-form-handling-762ef0d51327 -->
+		<section class="feature sections">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="xmain_portfolio">
+						<div class="col-sm-12">
+							<div class="head_title text-center">
+								<h2><span th:text="${results.fullContext}"/> REPOSITORY</h2>
+								<div class="subtitle"></div>
+								<div class="separator"></div>
+							</div>
+						</div>
+						
+					</div>
 				</div>
-				
-			</section>
-			<section class="feature sections">
+			</div>
+		</section>
+		
+		<section class="feature sections">
 				<div class="container">
 					<div class="table">
 					    

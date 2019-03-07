@@ -73,6 +73,7 @@ public class DocumentController {
 		//TODO Log all incoming parameters
 		
 		// TODO: Validate: e.g. uploadDocument != null, etc.
+		//TODO: Validate fullContext is leaf
 		
 		log.debug("uploading a document");
 
