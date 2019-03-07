@@ -25,14 +25,8 @@ public class JcrDocumentService implements DocumentService {
 		return document;
 	}
 
-	@Override
-	public ArrayList<Document> findDocuments(String query) {
-		
-		ArrayList<Document> documents = documentDao.queryDocuments(query);
-		
-		return documents;
-		
-	}
+	
+
 
 	@Override
 	public String addDocument(Document document) {
@@ -45,5 +39,37 @@ public class JcrDocumentService implements DocumentService {
 		documentDao.saveDocument(document);
 		
 		return uuid.toString();
+	}
+
+	/**
+	 * Get all documents for a specific folder. Must be a leaf folder.
+	 */
+	@Override
+	public ArrayList<Document> getDocuments(String folder) {
+		
+		//TODO: Need implemented
+		return new ArrayList<>();
+
+	}
+
+	/**
+	 * Find document searching all folders
+	 */
+	@Override
+	public ArrayList<Document> findDocuments(String query) {
+		
+		ArrayList<Document> documents = documentDao.queryDocuments(query);
+		
+		return documents;
+		
+	}
+	
+	/**
+	 * Find document searching specific folder. Doesn't have to be a leaf folder.
+	 */
+	@Override
+	public ArrayList<Document> findDocuments(String folder, String query) {
+		// TODO Need to be implemented
+		return new ArrayList<>();
 	}
 }

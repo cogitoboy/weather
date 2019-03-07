@@ -55,7 +55,7 @@
                                                 <span class="icon-bar"></span>
                                             </button>
                                             <a class="navbar-brand" href="#home">
-                                               
+                                               <span th:text="${results.fullContext}"></span>
                                             </a>
                                         </div>
 
@@ -87,6 +87,7 @@
 				<div class="container">
 				    <form method="POST" th:action="@{/app/document}" enctype="multipart/form-data">
 				       <input type="file" name="file" id="file"/> 
+				       <input type="hidden" th:value="${results.fullContext}" name="fullContext"/>
 				       <br/>
 				       <input type="submit" value="upload" name="upload" id="upload"/>
 				    </form>
@@ -100,7 +101,7 @@
 				<div class="container">
 				    <form action="#" th:action="@{/app/document/search}" th:object="${search}" method="post">
 				       <input type="text" th:field="*{query}"/> 
-				       
+				       <input type="hidden" th:value="${results.fullContext}" name="fullContext"/>
 				       <input type="submit"/>
 				    </form>
 				 

@@ -34,14 +34,14 @@ public class JcrDocumentDao extends BaseJcrDao implements DocumentDao {
 		assert (document.getName() != null);
 		assert (document.getUuid() != null);
 
-		String path = document.getPath();
+		String path = document.getFolder();
 
 		assert (path != null);
 		assert ("".equals(path));
 
 		try {
 
-			Node documentNode = getDocumentNode(document.getPath(), document.getName());
+			Node documentNode = getDocumentNode(document.getFolder(), document.getName());
 			Node contentNode = (Node)documentNode.getNodes().next();
 			
 			Binary binary = session.getValueFactory().createBinary(document.getInputStream());
