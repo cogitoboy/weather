@@ -1,3 +1,14 @@
 .form-control {
 	border: 2px solid #ddd;
 }
+
+.staletable {
+	width: 100%;
+	margin: 10%;
+}
+
+
+.staletable table {
+	width: 80%;
+	
+}
