@@ -18,11 +18,14 @@
 .staleheader {
 	float: left;
     margin-bottom: 20px;
+    
+    width: 100%;
 }
 
 .staleheader img {
-	    clear: both;
+	clear: both;
     float: left;
+    margin: 3px;
 	
 }
 

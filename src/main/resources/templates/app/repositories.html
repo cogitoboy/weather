@@ -32,6 +32,9 @@
 
         <!--Theme Responsive css-->
         <link rel="stylesheet" href="/css/responsive.css" />
+        
+        <link rel="stylesheet" href="/css/staleweb-main.css" />
+		<link rel="stylesheet" href="/css/staleweb-repositories.css" />
 
         <script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
@@ -56,7 +59,7 @@
                                             </button>
                                             
                                             <span class="staleheader">
-												<img alt=""src="/images/squarelogo_small.png">
+												<img alt=""src="/images/logo.png">
 												
 											</span> 
                                             <!-- a class="navbar-brand" href="#home">
@@ -93,16 +96,27 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="main_portfolio">
-                            <div class="col-sm-12">
-                                <div class="head_title text-center">
-                                    <h2>OPAS REPOSITORIES</h2>
-                                    <div class="subtitle">
-                                        
-                                    </div>
-                                    <div class="separator"></div>
+                             <div class="work_menu text-center">
+                                <div class="stalesearch head_title text-center">
+                                    <h3>SEARCH OPAS REPOSITORY</h3>
+                                    
+                                    
+                                	<form action="#" th:action="@{/app/document/search}" th:object="${search}" method="post">
+										<input type="text" th:field="*{query}"/> 
+										<input type="hidden" value="*"	name="fullContext"/> 
+										<input type="submit"/>
+									</form>
+									 <div class="separator"></div>
+									
                                 </div>
                             </div>
+              
                             <div class="work_menu text-center">
+                            
+                             <div class="head_title text-center">
+                                    <h2>OPAS REPOSITORY CATEGORIES</h2>
+                                    
+                              </div>
                                 <div id="filters" class="toolbar mb2 mt2">
                                     <button class="btn-md fil-cat filter active" data-filter="all">ALL</button>/
                                     <button class="btn-md fil-cat filter" data-rel="web" data-filter=".web">Auth Letters</button>/
@@ -124,92 +138,92 @@
                             <div id="portfoliowork"> 
                                 <div class="single_portfolio tile scale-anm web grid-item-width2 video" >
                                     <img src="/images/pf1.jpg" alt="" />
-                                    <a href="/app/document/opas">
+                                   
                                         <div class="grid_item_overlay">
                                             <div class="separator4"></div>
                                             <h3>Auth Letters</h3>
                                             <p>OPAS Archived Auth Letters</p>
                                         </div>
-                                    </a>
+                                   
                                 </div>
                                 <div class="single_portfolio tile scale-anm bcards photo" >
                                     <img src="/images/pf2.jpg" alt="" />
-                                    <a href="/images/pf2.jpg" class="portfolio-img">
+                                   
                                         <div class="grid_item_overlay">
                                             <div class="separator4"></div>
                                             
                                              <h3>Agency Profile Letters</h3>
                                             <p></p>
                                         </div>
-                                    </a>
+                                   
                                 </div>
                                 <div class="single_portfolio tile scale-anm web video">
                                     <img src="/images/pf3.jpg" alt="" />
-                                    <a href="/images/pf3.jpg" class="portfolio-img">
+                                   
                                         <div class="grid_item_overlay">
                                             <div class="separator4"></div>
                                            <h3>Nurse Profile Letters</h3>
                                             <p></p>
                                         </div>
-                                    </a>
+                                   
                                 </div>
                                 
                                    <div class="single_portfolio tile scale-anm bcards photo" >
-                                    <img src="/images/pf2.jpg" alt="" />
-                                    <a href="/images/pf2.jpg" class="portfolio-img">
+                                    <img src="/images/pf4.jpg" alt="" />
+                                   
                                         <div class="grid_item_overlay">
                                             <div class="separator4"></div>
                                             
                                              <h3>Agency Profiles</h3>
                                             <p></p>
                                         </div>
-                                    </a>
+                                   
                                 </div>
                                 <div class="single_portfolio tile scale-anm web video">
-                                    <img src="/images/pf3.jpg" alt="" />
-                                    <a href="/images/pf3.jpg" class="portfolio-img">
+                                    <img src="/images/pf1.jpg" alt="" />
+                                   
                                         <div class="grid_item_overlay">
                                             <div class="separator4"></div>
                                            <h3>Scanned Documents</h3>
                                             <p></p>
                                         </div>
-                                    </a>
+                                   
                                 </div>
                                 
                                    <div class="single_portfolio tile scale-anm bcards photo" >
-                                    <img src="/images/pf2.jpg" alt="" />
-                                    <a href="/images/pf2.jpg" class="portfolio-img">
+                                    <img src="/images/pf3.jpg" alt="" />
+                                   
                                         <div class="grid_item_overlay">
                                             <div class="separator4"></div>
                                             
                                              <h3>Reports</h3>
                                             <p></p>
                                         </div>
-                                    </a>
+                                   
                                 </div>
                                 <div class="single_portfolio tile scale-anm web video">
-                                    <img src="/images/pf3.jpg" alt="" />
-                                    <a href="/images/pf3.jpg" class="portfolio-img">
+                                    <img src="/images/pf4.jpg" alt="" />
+                                   
                                         <div class="grid_item_overlay">
                                             <div class="separator4"></div>
                                            <h3>Envelopes and Mail</h3>
                                             <p></p>
                                         </div>
-                                    </a>
+                                   
                                 </div>
                                 
                                 
                                 
                                 
                                 <div class="single_portfolio tile scale-anm web video">
-                                    <img src="/images/pf3.jpg" alt="" />
-                                    <a href="/images/pf3.jpg" class="portfolio-img">
+                                    <img src="/images/pf1.jpg" alt="" />
+                                   
                                         <div class="grid_item_overlay">
                                             <div class="separator4"></div>
                                            <h3>Other</h3>
                                             <p></p>
                                         </div>
-                                    </a>
+                                   
                                 </div>
                             </div>
 
