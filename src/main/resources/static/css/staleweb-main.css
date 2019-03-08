@@ -2,6 +2,7 @@
 	border: 2px solid #ddd;
 }
 
+
 .staletable {
 	width: 100%;
 	margin: 10%;
@@ -11,4 +12,22 @@
 .staletable table {
 	width: 80%;
 	
+}
+
+
+.staleheader {
+	float: left;
+    margin-bottom: 20px;
+}
+
+.staleheader img {
+	    clear: both;
+    float: left;
+	
+}
+
+.staleheader h2 {
+	float: left;
+    width: 50%;
+    margin-left: 5px;
 }
