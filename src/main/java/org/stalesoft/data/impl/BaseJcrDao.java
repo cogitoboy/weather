@@ -116,7 +116,7 @@ public class BaseJcrDao {
 				Document document = new Document();
 				document.setName(getNodeProperty(node, "doc:name"));
 				document.setMimeType(getNodeProperty(node, "jcr:mimeType"));
-				document.setPath(node.getParent().getPath());
+				document.setFolder(node.getParent().getPath());
 				document.setUuid(getNodeProperty(node, "doc:uuid"));
 				document.setInputStream(JcrUtils.readFile(node));
 

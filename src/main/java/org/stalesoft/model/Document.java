@@ -10,15 +10,15 @@ public class Document {
 		
 	}
 
-	public Document(String path) {
-		assert (path != null);
-		assert ("".equalsIgnoreCase(path));
+	public Document(String folder) {
+		assert (folder != null);
+		assert ("".equalsIgnoreCase(folder));
 		
-		this.path = path;
+		this.folder = folder;
 		
 	}
 	
-	private String path = Document.ROOT;
+	private String folder = Document.ROOT;
 	private String name;
 	private String mimeType;
 	private String uuid;
@@ -43,12 +43,12 @@ public class Document {
 		this.mimeType = mimeType;
 	}
 	
-	public String getPath() {
-		return path;
+	public String getFolder() {
+		return folder;
 	}
 	
-	public void setPath(String path) {
-		this.path = path;
+	public void setFolder(String path) {
+		this.folder = path;
 	}
 
 	public InputStream getInputStream() {

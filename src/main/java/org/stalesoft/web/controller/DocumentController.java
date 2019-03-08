@@ -46,12 +46,17 @@ public class DocumentController {
 	private static Logger log = LoggerFactory.getLogger(DocumentController.class);
 
 	
-	@GetMapping("/app/document")
-	public String home(Model model) {
+	/**
+	 * Displays empty
+	 */
+	@GetMapping("/app/document/{fullContext}")
+	public String documentsHome(@PathVariable("fullContext") String fullContext, Model model) {
 
 		DocumentListDto documentList  = new DocumentListDto();
+		documentList.setFullContext(fullContext);
 		
 		model.addAttribute("results", documentList);
+		
 		
 		return "app/documents";
 		
@@ -59,15 +64,16 @@ public class DocumentController {
 
 	/**
 	 * 
-	 * Saves uploaded documents.
+	 * Upload a document
 
 	 */
 	
 	@PostMapping("/app/document")
-	public String uploadDocument(@RequestParam("file") MultipartFile uploadDocument, Model model) {
+	public String uploadDocument(@RequestParam("file") MultipartFile uploadDocument, @RequestParam("fullContext") String fullContext, Model model) {
 		//TODO Log all incoming parameters
 		
 		// TODO: Validate: e.g. uploadDocument != null, etc.
+		//TODO: Validate fullContext is leaf
 		
 		log.debug("uploading a document");
 
@@ -87,7 +93,7 @@ public class DocumentController {
 		// TODO: a complete set of document parameters.
 		
 		document.setInputStream(documentInputStream);
-		document.setPath("testupload");
+		document.setFolder(fullContext);
 		document.setName(uploadDocument.getOriginalFilename());
 		
 		
@@ -104,13 +110,14 @@ public class DocumentController {
 		
 		document.setMimeType(mimeType);
 		
-		String uuid = documentService.addDocument(document);
+		documentService.addDocument(document);
 		
 		//Getting the results from the location the document was saved.
-		ArrayList<Document> documents = documentService.findDocuments(document.getPath());
+		ArrayList<Document> documents = documentService.getDocuments(fullContext);
 		
 		DocumentListDto documentList  = new DocumentListDto();
 		documentList.add(documents);
+		documentList.setFullContext(fullContext);
 		
 		//TODO need to externalize the attribute names
 		model.addAttribute("results", documentList);
@@ -119,6 +126,9 @@ public class DocumentController {
 
 	}
 
+	/**
+	 * Finds documents 
+	 */
 	@PostMapping("/app/document/search")
 	public String searchDocuments(@ModelAttribute("search") SearchDto searchDto, Model model) {
 
@@ -127,6 +137,7 @@ public class DocumentController {
 
 		DocumentListDto documentList = new DocumentListDto();
 		documentList.add(documents);
+		documentList.setFullContext(searchDto.getFullContext());
 
 		model.addAttribute("results", documentList);
 
@@ -140,6 +151,9 @@ public class DocumentController {
 	 * //https://stackoverflow.com/questions/44743317/how-to-create-a-dynamic-link-with-thymeleaf-and-spring-boot
 	 */
 	
+	/**
+	 * Downloads documents 
+	 */
 	@GetMapping("/app/document/download/{uuid}")
 	public ResponseEntity<byte[]> downloadDocument(@PathVariable("uuid") String uuid,  Model model) {
 		
@@ -171,6 +185,9 @@ public class DocumentController {
 		return response;
 	}
 
+	/**
+	 * Get Document Details
+	 */
 	@GetMapping("/app/document/detail")
 	public String details(Model model) {
 

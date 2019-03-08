@@ -13,12 +13,20 @@ public class HomeController {
 
 	private static Logger log = LoggerFactory.getLogger(HomeController.class);
 
-	@GetMapping("/app/{appName}/home")
-    public String home(Model model, @PathVariable("appName") String appName) {
-		
-       log.debug("Home requested for appName : {}", appName);
-		
-        return "app/home";
-    }
-	
+	@GetMapping("/app/{repository}/home")
+	public String typeHome(Model model, @PathVariable("repository") String repository) {
+
+		log.debug("Category List reqeuested for  repository : {}", repository);
+
+		return "app/catagories";
+	}
+
+	@GetMapping("/app/home")
+	public String sourceHome(Model model) {
+
+		log.debug("Repository list requested");
+
+		return "app/repositories";
+	}
+
 }
