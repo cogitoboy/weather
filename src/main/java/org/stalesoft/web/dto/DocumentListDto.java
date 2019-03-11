@@ -6,6 +6,10 @@ import org.stalesoft.model.Document;
 
 public class DocumentListDto implements BaseDto<ArrayList<Document>>{
 	
+	
+	private String rootContext;
+	private String leafContext;
+	private String fullContext;
 	private ArrayList<DocumentDto> documentDtos = new ArrayList<>();
 
 	public ArrayList<DocumentDto> getDocuments() {
@@ -32,6 +36,30 @@ public class DocumentListDto implements BaseDto<ArrayList<Document>>{
 			
 		}
 		
+	}
+
+	public String getFullContext() {
+		return fullContext;
+	}
+
+	public void setFullContext(String fullContext) {
+		this.fullContext = fullContext;
+	}
+
+	public String getLeafContext() {
+		return leafContext;
+	}
+
+	public void setLeafContext(String leafContext) {
+		this.leafContext = leafContext;
+	}
+
+	public String getRootContext() {
+		return rootContext;
+	}
+
+	public void setRootContext(String rootContext) {
+		this.rootContext = rootContext;
 	}
 	
 	

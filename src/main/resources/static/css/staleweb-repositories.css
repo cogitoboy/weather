@@ -1,0 +1,14 @@
+#portfoliowork {
+	margin: 50px;	
+}
+
+.stalesearch {
+	margin-top:150px;
+	margin-bottom:140px;
+}
+
+.stalesearch #query {
+	width: 80%;
+	max-width: 400px;
+	margin:10px;
+}
