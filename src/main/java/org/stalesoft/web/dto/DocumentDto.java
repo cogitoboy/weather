@@ -1,5 +1,6 @@
 package org.stalesoft.web.dto;
 
+import java.util.Date;
 import java.util.UUID;
 
 import org.stalesoft.model.Document;
@@ -10,7 +11,24 @@ public class DocumentDto implements BaseDto<Document>{
 	private String type;
 	private String documentTitle;
 	private String uuid;
+	private String version;
+	private String consumerId;
+	private String documentId;
+	private String description;
+	private Date archiveDate;
 	
+	@Override
+	public void add(Document document) {
+
+		setTitle(document.getName());
+		setType(document.getMimeType());
+		setUuid(document.getUuid());
+		setVersion(document.getVersion());
+		setConsumerId(document.getConsumerId());
+		setDocumentId(document.getDocumentId());
+		setDescription(document.getDescription());
+		setArchiveDate(document.getArchiveDate());
+	}
 	
 	public String getType() {
 		return type;
@@ -36,15 +54,44 @@ public class DocumentDto implements BaseDto<Document>{
 		return this.uuid;
 	}
 	
-	
+	public String getVersion() {
+		return version;
+	}
 
-	@Override
-	public void add(Document document) {
+	public void setVersion(String version) {
+		this.version = version;
+	}
 
-		setTitle(document.getName());
-		setType(document.getMimeType());
-		setUuid(document.getUuid());
-		
+	public String getConsumerId() {
+		return consumerId;
+	}
+
+	public void setConsumerId(String consumerId) {
+		this.consumerId = consumerId;
+	}
+
+	public String getDocumentId() {
+		return documentId;
+	}
+
+	public void setDocumentId(String documentId) {
+		this.documentId = documentId;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Date getArchiveDate() {
+		return archiveDate;
+	}
+
+	public void setArchiveDate(Date archiveDate) {
+		this.archiveDate = archiveDate;
 	}
 	
 	

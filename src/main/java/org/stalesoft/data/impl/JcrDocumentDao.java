@@ -48,6 +48,10 @@ public class JcrDocumentDao extends BaseJcrDao implements DocumentDao {
 			
 			contentNode.setProperty("doc:name", document.getName().toLowerCase());
 			contentNode.setProperty("doc:uuid", document.getUuid());
+			contentNode.setProperty("doc:consumerid", document.getConsumerId());
+			contentNode.setProperty("doc:documentid", document.getDocumentId());
+			contentNode.setProperty("doc:description", document.getDescription());
+			contentNode.setProperty("doc:archivedate", document.getArchiveDate().getTime());//TODO: make the required attributes required e.g. constructor
 			contentNode.setProperty("jcr:data", binary);
 			contentNode.setProperty("jcr:mimeType", document.getMimeType().toLowerCase());
 			contentNode.setProperty("jcr:lastModified", Calendar.getInstance());

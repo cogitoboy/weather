@@ -135,14 +135,26 @@
 					    
 						<table>
 								<tr>
+									<th>VERSION</th>
 									<th>NAME</th>
+									<th>CONSUMER ID</th>
+									<th>CONSUMER NAME</th>
+									<th>DOCUMENT ID</th>
+									<th>DOCUMENT DESCRIPTION</th>
+									<th>ARCHIVE DATE</th>
+									<th>DOCUMENT DATE</th>
 									<th>TYPE</th>
 									<th>UUID </th>
 									<th>DOWNLOAD</th>
 								</tr>
 						
 								<tr th:each="document : ${results.documents}">
+									<td><span th:text="${document.version}"></span></td>
             						<td><span th:text="${document.title}"></span></td>
+            						<td><span th:text="${document.consumerId}"></span></td>
+            						<td><span th:text="${document.documentId}"></span></td>
+            						<td><span th:text="${document.description}"></span></td>
+            						<td><span th:text="${document.archiveDate}"></span></td>
             						<td><span th:text="${document.type}"></span></td>
             						<td><span th:text="${document.uuid}"></span></td>
             						<td><a th:href="@{'/app/document/download/'+${document.uuid}}">download</a>

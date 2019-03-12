@@ -1,6 +1,7 @@
 package org.stalesoft.model;
 
 import java.io.InputStream;
+import java.util.Date;
 
 public class Document {
 
@@ -22,6 +23,11 @@ public class Document {
 	private String name;
 	private String mimeType;
 	private String uuid;
+	private String version;
+	private String consumerId;
+	private String documentId;
+	private String description;
+	private Date archiveDate;
 	
 	private InputStream inputStream;
 	
@@ -65,6 +71,46 @@ public class Document {
 
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
+
+	public String getConsumerId() {
+		return consumerId;
+	}
+
+	public void setConsumerId(String consumerId) {
+		this.consumerId = consumerId;
+	}
+
+	public String getDocumentId() {
+		return documentId;
+	}
+
+	public void setDocumentId(String documentId) {
+		this.documentId = documentId;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Date getArchiveDate() {
+		return archiveDate;
+	}
+
+	public void setArchiveDate(Date archiveDate) {
+		this.archiveDate = archiveDate;
 	}
 	
 	
