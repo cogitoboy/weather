@@ -34,7 +34,7 @@
         <link rel="stylesheet" href="/css/responsive.css" />
         
         <link rel="stylesheet" href="/css/staleweb-main.css" />
-        <link rel="stylesheet" href="/css/staleweb-repositories.css" />
+        <link rel="stylesheet" href="/css/staleweb-documents.css" />
         
 
         <script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
@@ -119,17 +119,20 @@
 						
 					</div>
 				</div>
-					<div class="container">
-											<form action="#" th:action="@{/app/document/search}"
-												th:object="${search}" method="post">
-												<input type="text" th:field="*{query}" /> <input
-													type="hidden" th:value="${results.fullContext}"
-													name="fullContext" /> <input type="submit" />
-											</form>
 
-										</div>
-				
-				
+				 <div class="work_menu text-center">
+                                <div class="stalesearch head_title text-center">
+                                    
+                                	<form action="#" th:action="@{/app/document/search}" th:object="${search}" method="post">
+										<input type="text" th:field="*{query}"/> 
+										<input type="hidden" value="*"	name="fullContext"/> 
+										<input type="submit" name="login-submit" id="login-submit"
+										class="btn btn-lg m_t_10" value="SEARCH">
+									</form>
+									
+									
+                                </div>
+                            </div>
 			
 					<div class="staletable">
 					    
@@ -152,9 +155,11 @@
 									<td><span th:text="${document.version}"></span></td>
             						<td><span th:text="${document.title}"></span></td>
             						<td><span th:text="${document.consumerId}"></span></td>
+            						<td><span th:text="${document.consumerName}"></span></td>
             						<td><span th:text="${document.documentId}"></span></td>
             						<td><span th:text="${document.description}"></span></td>
             						<td><span th:text="${document.archiveDate}"></span></td>
+            						<td><span th:text="${document.documentDate}"></span></td>
             						<td><span th:text="${document.type}"></span></td>
             						<td><span th:text="${document.uuid}"></span></td>
             						<td><a th:href="@{'/app/document/download/'+${document.uuid}}">download</a>

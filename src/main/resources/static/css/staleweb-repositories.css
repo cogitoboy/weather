@@ -12,7 +12,7 @@
 .stalesearch #query {
 	width: 80%;
 	max-width: 400px;
-	padding-bottom: .5rem;
+	padding: .5rem;
 
 }
 
@@ -27,3 +27,4 @@ button.btn-md {
 	font-size: 20px;
     font-family: 'source_sans_proregular';
 }
+

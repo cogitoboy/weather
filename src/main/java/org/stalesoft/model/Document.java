@@ -25,9 +25,12 @@ public class Document {
 	private String uuid;
 	private String version;
 	private String consumerId;
+	private String consumerName;
 	private String documentId;
 	private String description;
 	private Date archiveDate;
+	private Date documentDate;
+	
 	
 	private InputStream inputStream;
 	
@@ -111,6 +114,22 @@ public class Document {
 
 	public void setArchiveDate(Date archiveDate) {
 		this.archiveDate = archiveDate;
+	}
+
+	public Date getDocumentDate() {
+		return documentDate;
+	}
+
+	public void setDocumentDate(Date documentDate) {
+		this.documentDate = documentDate;
+	}
+
+	public String getConsumerName() {
+		return consumerName;
+	}
+
+	public void setConsumerName(String consumerName) {
+		this.consumerName = consumerName;
 	}
 	
 	

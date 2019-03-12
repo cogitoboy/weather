@@ -13,9 +13,11 @@ public class DocumentDto implements BaseDto<Document>{
 	private String uuid;
 	private String version;
 	private String consumerId;
+	private String consumerName;
 	private String documentId;
 	private String description;
 	private Date archiveDate;
+	private Date documentDate;
 	
 	@Override
 	public void add(Document document) {
@@ -28,6 +30,8 @@ public class DocumentDto implements BaseDto<Document>{
 		setDocumentId(document.getDocumentId());
 		setDescription(document.getDescription());
 		setArchiveDate(document.getArchiveDate());
+		setDocumentDate(document.getDocumentDate());
+		setConsumerName(document.getConsumerName());
 	}
 	
 	public String getType() {
@@ -92,6 +96,22 @@ public class DocumentDto implements BaseDto<Document>{
 
 	public void setArchiveDate(Date archiveDate) {
 		this.archiveDate = archiveDate;
+	}
+
+	public Date getDocumentDate() {
+		return documentDate;
+	}
+
+	public void setDocumentDate(Date documentDate) {
+		this.documentDate = documentDate;
+	}
+
+	public String getConsumerName() {
+		return consumerName;
+	}
+
+	public void setConsumerName(String consumerName) {
+		this.consumerName = consumerName;
 	}
 	
 	
