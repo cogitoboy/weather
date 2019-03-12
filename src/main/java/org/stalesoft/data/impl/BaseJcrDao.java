@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
@@ -19,6 +20,7 @@ import javax.jcr.nodetype.NodeType;
 import javax.jcr.query.Query;
 import javax.jcr.query.QueryManager;
 import javax.jcr.query.QueryResult;
+import javax.jcr.version.VersionManager;
 
 import org.apache.jackrabbit.commons.JcrUtils;
 import org.apache.jackrabbit.commons.cnd.CndImporter;
@@ -26,6 +28,7 @@ import org.apache.jackrabbit.commons.cnd.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.NumberUtils;
 import org.stalesoft.model.Document;
 
 public class BaseJcrDao {
@@ -118,8 +121,15 @@ public class BaseJcrDao {
 				document.setMimeType(getNodeProperty(node, "jcr:mimeType"));
 				document.setFolder(node.getParent().getPath());
 				document.setUuid(getNodeProperty(node, "doc:uuid"));
+				document.setArchiveDate(getNodePropertyDate(node, "doc:archivedate"));
+				document.setDocumentDate(getNodePropertyDate(node, "doc:documentdate"));
+				document.setConsumerId(getNodeProperty(node, "doc:consumerid"));
+				document.setConsumerId(getNodeProperty(node, "doc:consumername"));
+				document.setDescription(getNodeProperty(node, "doc:description"));
+				document.setDocumentId(getNodeProperty(node, "doc:documentid"));
 				document.setInputStream(JcrUtils.readFile(node));
-
+				document.setVersion("1.1");//TODO: Get the latest version
+				document.setCategory("auth_letters");
 				documents.add(document);
 
 			}
@@ -179,6 +189,20 @@ public class BaseJcrDao {
 
 	}
 
+	protected Date getNodePropertyDate(Node node, String propertyName) throws RepositoryException {
+		
+		Date date = null;
+		
+		String dateString = getNodeProperty(node, propertyName);
+		
+		if (dateString != null && dateString.chars().allMatch(Character::isDigit)) {
+			
+			date = new Date(new Long(dateString));
+		}
+		
+		return date;
+		
+	}
 	protected String getNodeProperty(Node node, String propertyName) throws RepositoryException {
 
 		String value = null;

@@ -34,6 +34,7 @@
         <link rel="stylesheet" href="/css/responsive.css" />
         
         <link rel="stylesheet" href="/css/staleweb-main.css" />
+        <link rel="stylesheet" href="/css/staleweb-documents.css" />
         
 
         <script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
@@ -42,55 +43,46 @@
 
         <div class='preloader'><div class='loaded'>&nbsp;</div></div>
         <div class="culmn">
-            <header id="main_menu" class="header navbar-fixed-top">            
+             <header id="main_menu" class="header navbar-fixed-top">            
                 <div class="main_menu_bg">
                     <div class="container">
                         <div class="row">
                             <div class="nave_menu">
-							<nav class="navbar navbar-default">
-								<div class="container-fluid">
-									<!-- Brand and toggle get grouped for better mobile display -->
-									<div class="navbar-header">
-										<button type="button" class="navbar-toggle collapsed"
-											data-toggle="collapse"
-											data-target="#bs-example-navbar-collapse-1"
-											aria-expanded="false">
-											<span class="sr-only">Toggle navigation</span> <span
-												class="icon-bar"></span> <span class="icon-bar"></span> <span
-												class="icon-bar"></span>
-										</button>
-										<div class="container">
-											<form action="#" th:action="@{/app/document/search}"
-												th:object="${search}" method="post">
-												<input type="text" th:field="*{query}" /> <input
-													type="hidden" th:value="${results.fullContext}"
-													name="fullContext" /> <input type="submit" />
-											</form>
+                                <nav class="navbar navbar-default">
+                                    <div class="container-fluid">
+                                        <!-- Brand and toggle get grouped for better mobile display -->
+                                        <div class="navbar-header">
+                                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                                <span class="sr-only">Toggle navigation</span>
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                            </button>
+                                            
+                                            <span class="staleheader">
+												<img alt=""src="/images/logo.png">
+												
+											</span> 
+                                            
+                                        </div>
 
-										</div>
-										<!-- a class="navbar-brand" href="#home"> <span
-											th:text="${results.fullContext}"></span>
-										</a-->
-									</div>
-
-									<!-- Collect the nav links, forms, and other content for toggling -->
+                                        <!-- Collect the nav links, forms, and other content for toggling -->
 
 
 
-									<div class="collapse navbar-collapse"
-										id="bs-example-navbar-collapse-1">
+                                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-										<ul class="nav navbar-nav navbar-right">
-											<li><a href="#home"></a></li>
+                                            <ul class="nav navbar-nav navbar-right">
+                                                <li><a href="#home"></a></li>
+                                                <li><a href="/app/home"></a></li>
+                                            </ul>
 
-										</ul>
 
+                                        </div>
 
-									</div>
-
-								</div>
-							</nav>
-						</div>	
+                                    </div>
+                                </nav>
+                            </div>	
                         </div>
 
                     </div>
@@ -118,28 +110,58 @@
 					<div class="xmain_portfolio">
 						<div class="col-sm-12">
 							<div class="head_title text-center">
-								<h2><span th:text="${results.fullContext}"/> REPOSITORY</h2>
+								<h2>
+								  <!-- span th:text="${results.fullContext}"/> REPOSITORY</h2-->
+								  <span>ALL CATEGORIES</span>
 								
 							</div>
 						</div>
 						
 					</div>
 				</div>
-				
-				
+
+				 <div class="work_menu text-center">
+                                <div class="stalesearch head_title text-center">
+                                    
+                                	<form action="#" th:action="@{/app/document/search}" th:object="${search}" method="post">
+										<input type="text" th:field="*{query}"/> 
+										<input type="hidden" value="*"	name="fullContext"/> 
+										<input type="submit" name="login-submit" id="login-submit"
+										class="btn btn-lg m_t_10" value="SEARCH">
+									</form>
+									
+									
+                                </div>
+                            </div>
 			
 					<div class="staletable">
 					    
 						<table>
 								<tr>
+									<th>VERSION</th>
 									<th>NAME</th>
+									<th>CATEGORY</th>
+									<th>CONSUMER ID</th>
+									<th>CONSUMER NAME</th>
+									<th>DOCUMENT ID</th>
+									<th>DOCUMENT DESCRIPTION</th>
+									<th>ARCHIVE DATE</th>
+									<th>DOCUMENT DATE</th>
 									<th>TYPE</th>
 									<th>UUID </th>
 									<th>DOWNLOAD</th>
 								</tr>
 						
 								<tr th:each="document : ${results.documents}">
+									<td><span th:text="${document.version}"></span></td>
             						<td><span th:text="${document.title}"></span></td>
+            						<td><span th:text="${document.category}"></span></td>
+            						<td><span th:text="${document.consumerId}"></span></td>
+            						<td><span th:text="${document.consumerName}"></span></td>
+            						<td><span th:text="${document.documentId}"></span></td>
+            						<td><span th:text="${document.description}"></span></td>
+            						<td><span th:text="${document.archiveDate}"></span></td>
+            						<td><span th:text="${document.documentDate}"></span></td>
             						<td><span th:text="${document.type}"></span></td>
             						<td><span th:text="${document.uuid}"></span></td>
             						<td><a th:href="@{'/app/document/download/'+${document.uuid}}">download</a>

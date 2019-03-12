@@ -59,13 +59,10 @@
                                             </button>
                                             
                                             <span class="staleheader">
-												<img alt=""src="/images/logo.png">
+												
 												
 											</span> 
-                                            <!-- a class="navbar-brand" href="#home">
-                                                <img src="/images/logo.png"/>
-                                                 <h2>MOUNTAIN PACIFIC Documents</h2>
-                                            </a-->
+                                            
                                         </div>
 
                                         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -98,15 +95,16 @@
                         <div class="main_portfolio">
                              <div class="work_menu text-center">
                                 <div class="stalesearch head_title text-center">
-                                    <h3>SEARCH OPAS REPOSITORY</h3>
+                                    <h3>Search <strong>ALL</strong> OPAS Documents</h3>
                                     
                                     
                                 	<form action="#" th:action="@{/app/document/search}" th:object="${search}" method="post">
 										<input type="text" th:field="*{query}"/> 
 										<input type="hidden" value="*"	name="fullContext"/> 
-										<input type="submit"/>
+										<input type="submit" name="login-submit" id="login-submit"
+										class="btn btn-lg m_t_10" value="SEARCH">
 									</form>
-									 <div class="separator"></div>
+									
 									
                                 </div>
                             </div>
@@ -114,7 +112,7 @@
                             <div class="work_menu text-center">
                             
                              <div class="head_title text-center">
-                                    <h2>OPAS REPOSITORY CATEGORIES</h2>
+                                    <h2>OPAS CATEGORIES</h2>
                                     
                               </div>
                                 <div id="filters" class="toolbar mb2 mt2">
@@ -124,10 +122,6 @@
                                     <button class="btn-md fil-cat filter" data-rel="flyers" data-filter=".flyers">Nurse Profile Letters</button>/
                                     <button class="btn-md fil-cat filter" data-rel="flyers" data-filter=".flyers">Scanned Documents</button>/
                                     <button class="btn-md fil-cat filter" data-rel="flyers" data-filter=".flyers">Agency Profile</button>/
-                                    
-                                    <button class="btn-md fil-cat filter" data-rel="flyers" data-filter=".flyers">Reports</button>/
-                                    <button class="btn-md fil-cat filter" data-rel="flyers" data-filter=".flyers">Envelopes and Mail</button>/
-                                    
                                     <button class="btn-md fil-cat filter" data-rel="flyers" data-filter=".flyers">Other</button>/
                                     
                                 </div> 
@@ -135,7 +129,7 @@
                             </div>
 
                             <div style="clear:both;"></div>     
-                            <div id="portfoliowork"> 
+                            <div id="portfoliowork" style='display: none'> 
                                 <div class="single_portfolio tile scale-anm web grid-item-width2 video" >
                                     <img src="/images/pf1.jpg" alt="" />
                                    
@@ -246,18 +240,13 @@
                                 <div class="row">
                                     <div class="col-sm-6 col-xs-12">
                                         <div class="flowus">
-                                            <a href=""><i class="fa fa-facebook"></i></a>
-                                            <a href=""><i class="fa fa-twitter"></i></a>
-                                            <a href=""><i class="fa fa-google-plus"></i></a>
-                                            <a href=""><i class="fa fa-instagram"></i></a>
-                                            <a href=""><i class="fa fa-youtube"></i></a>
-                                            <a href=""><i class="fa fa-dribbble"></i></a>
+                                        
                                         </div>
                                     </div>
 
                                     <div class="col-sm-6 col-xs-12">
                                         <div class="copyright_text">
-                                            <p class=" wow fadeInRight" data-wow-duration="1s">Made with <i class="fa fa-heart"></i> by <a href="http://bootstrapthemes.co">Bootstrap Themes</a>2016. All Rights Reserved</p>
+                                        
                                         </div>
                                     </div>
                                 </div>
