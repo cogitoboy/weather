@@ -57,7 +57,7 @@ public class JcrDocumentDao extends BaseJcrDao implements DocumentDao {
 			contentNode.setProperty("jcr:data", binary);
 			contentNode.setProperty("jcr:mimeType", document.getMimeType().toLowerCase());
 			contentNode.setProperty("jcr:lastModified", Calendar.getInstance());
-
+			
 			session.save();
 
 		} catch (RepositoryException e) {

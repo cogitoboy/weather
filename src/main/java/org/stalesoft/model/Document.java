@@ -30,6 +30,7 @@ public class Document {
 	private String description;
 	private Date archiveDate;
 	private Date documentDate;
+	private String category;
 	
 	
 	private InputStream inputStream;
@@ -130,6 +131,14 @@ public class Document {
 
 	public void setConsumerName(String consumerName) {
 		this.consumerName = consumerName;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	
 	

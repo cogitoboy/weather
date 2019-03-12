@@ -129,7 +129,7 @@ public class BaseJcrDao {
 				document.setDocumentId(getNodeProperty(node, "doc:documentid"));
 				document.setInputStream(JcrUtils.readFile(node));
 				document.setVersion("1.1");//TODO: Get the latest version
-
+				document.setCategory("auth_letters");
 				documents.add(document);
 
 			}
