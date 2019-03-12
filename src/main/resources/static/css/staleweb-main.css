@@ -34,3 +34,8 @@
     width: 50%;
     margin-left: 5px;
 }
+
+
+.main_menu_bg .navbar-nav>li>a {
+	color: red;
+}

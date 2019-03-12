@@ -28,8 +28,8 @@ public class Document {
 	private String consumerName;
 	private String documentId;
 	private String description;
-	private Date archiveDate;
-	private Date documentDate;
+	private Date archiveDate = new Date(); 
+	private Date documentDate = new Date(); 
 	private String category;
 	
 	

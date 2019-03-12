@@ -1,0 +1,96 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang=""
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Stalesoft Login</title>
+<meta name="description" content="Stalesoft login page">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<link rel="stylesheet" href="/css/iconfont.css">
+<link rel="stylesheet" href="/css/slick/slick.css">
+<link rel="stylesheet" href="/css/slick/slick-theme.css">
+<!-- link rel="stylesheet" href="/css/stylesheet.css"-->
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/bootstrap.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/magnific-popup.css">
+
+<link rel="stylesheet" href="/css/plugins.css" />
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<link rel="stylesheet" href="/css/responsive.css" />
+<link rel="stylesheet" href="/css/staleweb-main.css" />
+<link rel="stylesheet" href="/css/staleweb-login.css" />
+
+<script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+</head>
+<body>
+	<div>
+		<section class="stalelogin">
+
+			<div class="row">
+
+
+				<div class="col-md-6 col-md-offset-4">
+					<!-- span class="staleheader"> <img alt=""
+						src="/images/squarelogo_small.png">
+						<h2>Login</h2>
+					</span-->
+						<!-- section class="feature sections">
+				<div class="container">
+				    <form method="POST" th:action="@{/app/document}" enctype="multipart/form-data">
+				       <input type="file" name="file" id="file"/> 
+				       <input type="hidden" th:value="${results.fullContext}" name="fullContext"/>
+				       <br/>
+				       <input type="submit" value="upload" name="upload" id="upload"/>
+				    </form>
+				 
+				</div>
+				
+			</section-->
+
+					 <form method="POST" th:action="@{/app/document}" enctype="multipart/form-data">
+					    <div class="form-group">
+							<label for="consumerId">Consumer ID</label>: <input type="text"
+								id="consumer_id" name="consumerId" class="form-control"
+								placeholder="consumerId">
+						</div>
+						 <div class="form-group">
+							<label for="category">Consumer ID</label>: <input type="text"
+								id="category" name="category" class="form-control"
+								placeholder="category">
+						</div>
+					    
+					    
+					    <input type="file" name="file" id="file"/> 
+					    
+				       <input type="hidden" value="opas" name="fullContext"/>
+				       <br/>
+				       <input type="submit" value="upload" name="upload" id="upload"/>
+					
+					</form>
+				</div>
+			</div>
+
+		</section>
+
+
+
+	</div>
+</body>
+</html>
