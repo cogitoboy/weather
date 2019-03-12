@@ -124,7 +124,7 @@ public class BaseJcrDao {
 				document.setArchiveDate(getNodePropertyDate(node, "doc:archivedate"));
 				document.setDocumentDate(getNodePropertyDate(node, "doc:documentdate"));
 				document.setConsumerId(getNodeProperty(node, "doc:consumerid"));
-				document.setConsumerId(getNodeProperty(node, "doc:consumername"));
+				document.setConsumerName(getNodeProperty(node, "doc:consumername"));
 				document.setDescription(getNodeProperty(node, "doc:description"));
 				document.setDocumentId(getNodeProperty(node, "doc:documentid"));
 				document.setInputStream(JcrUtils.readFile(node));

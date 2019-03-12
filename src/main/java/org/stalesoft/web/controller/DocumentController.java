@@ -61,9 +61,18 @@ public class DocumentController {
 	 * Upload a document
 
 	 */
+	@GetMapping("/app/document")
+	public String uploadDocumentHome(Model model) {
+		
+		return "app/upload";
+	}
 	
 	@PostMapping("/app/document")
-	public String uploadDocument(@RequestParam("file") MultipartFile uploadDocument, @RequestParam("fullContext") String fullContext, Model model) {
+	public String uploadDocument(@RequestParam("file") MultipartFile uploadDocument, 
+			@RequestParam("fullContext") String fullContext,
+			@RequestParam("category") String category,
+			@RequestParam("consumerId") String consumerId,
+			Model model) {
 		//TODO Log all incoming parameters
 		
 		// TODO: Validate: e.g. uploadDocument != null, etc.
@@ -89,6 +98,8 @@ public class DocumentController {
 		document.setInputStream(documentInputStream);
 		document.setFolder(fullContext);
 		document.setName(uploadDocument.getOriginalFilename());
+		document.setConsumerId(consumerId);
+		document.setCategory(category);
 		
 		
 		String mimeType = MimeTypeUtils.APPLICATION_OCTET_STREAM_VALUE;
@@ -116,7 +127,7 @@ public class DocumentController {
 		//TODO need to externalize the attribute names
 		model.addAttribute("results", documentList);
 		
-		return "app/documents";
+		return "app/upload";
 
 	}
 
