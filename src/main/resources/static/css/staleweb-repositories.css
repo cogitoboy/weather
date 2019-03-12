@@ -5,10 +5,25 @@
 .stalesearch {
 	margin-top:150px;
 	margin-bottom:140px;
+	font-size: 28px;
+	    
 }
 
 .stalesearch #query {
 	width: 80%;
 	max-width: 400px;
-	margin:10px;
+	padding-bottom: .5rem;
+
+}
+
+
+.stalesearch .btn {
+	
+	margin: 0;
+}
+
+button.btn-md {
+	
+	font-size: 29px;
+    font-family: 'source_sans_proregular';
 }
