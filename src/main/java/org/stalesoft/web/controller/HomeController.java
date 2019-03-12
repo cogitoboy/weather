@@ -5,8 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.stalesoft.data.impl.JcrDocumentDao;
+import org.stalesoft.web.dto.SearchDto;
 
 @Controller
 public class HomeController {
@@ -27,6 +29,11 @@ public class HomeController {
 		log.debug("Repository list requested");
 
 		return "app/repositories";
+	}
+	
+	@ModelAttribute(value="search")
+	public SearchDto getSearchDto() {
+		return new SearchDto();
 	}
 
 }
