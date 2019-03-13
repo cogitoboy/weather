@@ -72,8 +72,11 @@ public class DocumentController {
 			@RequestParam("fullContext") String fullContext,
 			@RequestParam("category") String category,
 			@RequestParam("consumerId") String consumerId,
+			@RequestParam("documentId") String documentId,
+			@RequestParam("description") String description,
+			@RequestParam("consumerName") String consumerName,
 			Model model) {
-		//TODO Log all incoming parameters
+
 		
 		// TODO: Validate: e.g. uploadDocument != null, etc.
 		//TODO: Validate fullContext is leaf
@@ -100,7 +103,9 @@ public class DocumentController {
 		document.setName(uploadDocument.getOriginalFilename());
 		document.setConsumerId(consumerId);
 		document.setCategory(category);
-		
+		document.setDescription(description);
+		document.setConsumerName(consumerName);
+		document.setDocumentId(documentId);
 		
 		String mimeType = MimeTypeUtils.APPLICATION_OCTET_STREAM_VALUE;
 		

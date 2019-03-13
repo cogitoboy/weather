@@ -24,6 +24,9 @@ public class JcrDocumentDao extends BaseJcrDao implements DocumentDao {
 							+ " OR p.[doc:name] like '%%%1$s%%'"
 							+ " OR p.[doc:consumerid] like '%%%1$s%%'"
 							+ " OR p.[doc:category] like '%%%1$s%%'"
+							+ " OR p.[doc:documentid] like '%%%1$s%%'"
+							+ " OR p.[doc:description] like '%%%1$s%%'"
+							+ " OR p.[doc:consumername] like '%%%1$s%%'"
 							+ " OR p.[doc:uuid] like '%%%1$s%%' ";
 	protected static String GET_BY_UUID_SQL = "SELECT p.* FROM [nt:resource] AS p WHERE p.[doc:uuid] LIKE '%%%1$s%%' ";
 	protected static String GET_BY_NAME_SQL = "SELECT p.* FROM [nt:file] AS p WHERE NAME(p) LIKE '%%%1$s%%'";
