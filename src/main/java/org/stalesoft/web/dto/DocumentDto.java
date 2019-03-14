@@ -20,22 +20,6 @@ public class DocumentDto implements BaseDto<Document>{
 	private Date documentDate;
 	private String category;
 	
-	@Override
-	public void add(Document document) {
-
-		setTitle(document.getName());
-		setType(document.getMimeType());
-		setUuid(document.getUuid());
-		setVersion(document.getVersion());
-		setConsumerId(document.getConsumerId());
-		setDocumentId(document.getDocumentId());
-		setDescription(document.getDescription());
-		setArchiveDate(document.getArchiveDate());
-		setDocumentDate(document.getDocumentDate());
-		setConsumerName(document.getConsumerName());
-		setCategory(document.getCategory());
-	}
-	
 	public String getType() {
 		return type;
 	}
@@ -122,6 +106,22 @@ public class DocumentDto implements BaseDto<Document>{
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	
+	@Override
+	public void add(Document document) {
+
+		setTitle(document.getName());
+		setType(document.getMimeType());
+		setUuid(document.getUuid());
+		setVersion(document.getVersion());
+		setConsumerId(document.getConsumerId());
+		setDocumentId(document.getDocumentId());
+		setDescription(document.getDescription());
+		setArchiveDate(document.getArchiveDate());
+		setDocumentDate(document.getDocumentDate());
+		setConsumerName(document.getConsumerName());
+		setCategory(document.getCategory());
 	}
 	
 	
