@@ -1,14 +1,10 @@
 package org.stalesoft.web.dto;
 
-
-
 public class SearchDto {
-	
 	
 	private String query;
 	private String repository;
 	private String category;
-
 	
 	public void setQuery(String query) {
 		this.query = query;
@@ -33,9 +29,5 @@ public class SearchDto {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-
-	
-	
-	
 
 }
