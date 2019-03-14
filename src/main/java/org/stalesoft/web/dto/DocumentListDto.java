@@ -7,9 +7,13 @@ import org.stalesoft.model.Document;
 public class DocumentListDto implements BaseDto<ArrayList<Document>>{
 	
 	
-	private String rootContext;
-	private String leafContext;
-	private String fullContext;
+	//TODO: make it repo/category
+	
+	private String repository;
+	private String category;
+	
+	
+	
 	private ArrayList<DocumentDto> documentDtos = new ArrayList<>();
 
 	public ArrayList<DocumentDto> getDocuments() {
@@ -38,28 +42,21 @@ public class DocumentListDto implements BaseDto<ArrayList<Document>>{
 		
 	}
 
-	public String getFullContext() {
-		return fullContext;
+	
+	public String getCategory() {
+		return category;
 	}
 
-	public void setFullContext(String fullContext) {
-		this.fullContext = fullContext;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
-	public String getLeafContext() {
-		return leafContext;
+	public String getRepository() {
+		return repository;
 	}
 
-	public void setLeafContext(String leafContext) {
-		this.leafContext = leafContext;
-	}
-
-	public String getRootContext() {
-		return rootContext;
-	}
-
-	public void setRootContext(String rootContext) {
-		this.rootContext = rootContext;
+	public void setRepository(String repository) {
+		this.repository = repository;
 	}
 	
 	

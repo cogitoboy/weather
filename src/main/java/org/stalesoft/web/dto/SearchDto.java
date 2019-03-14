@@ -6,7 +6,8 @@ public class SearchDto {
 	
 	
 	private String query;
-	private String fullContext;
+	private String repository;
+	private String category;
 
 	
 	public void setQuery(String query) {
@@ -17,13 +18,23 @@ public class SearchDto {
 		return this.query;
 	}
 
-	public String getFullContext() {
-		return fullContext;
+	public String getRepository() {
+		return repository;
 	}
 
-	public void setFullContext(String fullContext) {
-		this.fullContext = fullContext;
+	public void setRepository(String repository) {
+		this.repository = repository;
 	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	
 	
 	
 

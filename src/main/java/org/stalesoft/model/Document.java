@@ -5,21 +5,9 @@ import java.util.Date;
 
 public class Document {
 
-	public static final String ROOT = "/";
 	
-	public Document() {
-		
-	}
-
-	public Document(String folder) {
-		assert (folder != null);
-		assert ("".equalsIgnoreCase(folder));
-		
-		this.folder = folder;
-		
-	}
+	//TODO: Constructor for required params
 	
-	private String folder = Document.ROOT;
 	private String name;
 	private String mimeType;
 	private String uuid;
@@ -29,7 +17,11 @@ public class Document {
 	private String documentId;
 	private String description;
 	private Date archiveDate = new Date(); 
-	private Date documentDate = new Date(); 
+	private Date documentDate = new Date();
+	
+	
+	
+	private String repository;
 	private String category;
 	
 	
@@ -53,14 +45,6 @@ public class Document {
 		this.mimeType = mimeType;
 	}
 	
-	public String getFolder() {
-		return folder;
-	}
-	
-	public void setFolder(String path) {
-		this.folder = path;
-	}
-
 	public InputStream getInputStream() {
 		return inputStream;
 	}
@@ -140,8 +124,13 @@ public class Document {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
-	
-	
+
+	public String getRepository() {
+		return repository;
+	}
+
+	public void setRepository(String repository) {
+		this.repository = repository;
+	}
 	
 }

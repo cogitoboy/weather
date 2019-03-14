@@ -115,11 +115,14 @@ public class BaseJcrDao {
 			while (nodeIter.hasNext()) {
 
 				Node node = nodeIter.nextNode();
-
+				
 				Document document = new Document();
+				
+				document.setCategory(node.getParent().getName());
+				document.setRepository(node.getParent().getParent().getName());
+				
 				document.setName(getNodeProperty(node, "doc:name"));
 				document.setMimeType(getNodeProperty(node, "jcr:mimeType"));
-				document.setFolder(node.getParent().getPath());
 				document.setUuid(getNodeProperty(node, "doc:uuid"));
 				document.setArchiveDate(getNodePropertyDate(node, "doc:archivedate"));
 				document.setDocumentDate(getNodePropertyDate(node, "doc:documentdate"));
@@ -129,7 +132,7 @@ public class BaseJcrDao {
 				document.setDocumentId(getNodeProperty(node, "doc:documentid"));
 				document.setInputStream(JcrUtils.readFile(node));
 				document.setVersion("1.1");//TODO: Get the latest version
-				document.setCategory("auth_letters");
+				
 				documents.add(document);
 
 			}
@@ -156,9 +159,7 @@ public class BaseJcrDao {
 		
 		
 		Node folderNode = getFolder(folder);
-		//Node documentNode = JcrUtils.getOrCreateByPath(folderNode, documentName, true, "nt:folder", "nt:file", false);
-		
-		
+
 		Node documentNode = null;
 		
 		if (folderNode.hasNode(documentName)) {
