@@ -7,6 +7,7 @@ public class Document {
 
 	
 	//TODO: Constructor for required params
+	//TODO: hashcode/equals https://stackoverflow.com/questions/5038204/apache-commons-equals-hashcode-builder
 	
 	private String name;
 	private String mimeType;
