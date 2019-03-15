@@ -1,7 +1,6 @@
 package org.stalesoft.web.dto;
 
 import java.util.Date;
-import java.util.UUID;
 
 import org.stalesoft.model.Document;
 

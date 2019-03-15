@@ -63,6 +63,7 @@ public class JcrDocumentDao extends BaseJcrDao implements DocumentDao {
 			contentNode.setProperty("jcr:lastModified", Calendar.getInstance());
 			
 			session.save();
+			log.debug("document saved");
 
 		} catch (RepositoryException e) {
 			// TODO need to throw a dao exception
