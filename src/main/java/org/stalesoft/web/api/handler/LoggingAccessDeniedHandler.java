@@ -1,4 +1,4 @@
-package org.stalesoft.web.controller;
+package org.stalesoft.web.api.handler;
 
 import java.io.IOException;
 
@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
+
 
 @Component
 public class LoggingAccessDeniedHandler implements AccessDeniedHandler {
