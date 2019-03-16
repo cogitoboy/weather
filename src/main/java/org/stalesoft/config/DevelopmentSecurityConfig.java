@@ -26,7 +26,7 @@ public class DevelopmentSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		    .antMatchers("/", "/js/**", "/css/**", "/images/**", "/webjars/**", "/app/**")
+		    .antMatchers("/", "/js/**", "/css/**", "/images/**", "/webjars/**", "/app/**", "/api/**")
 		    .permitAll()
 			.antMatchers("/app/**")
 			.hasRole("USER")
