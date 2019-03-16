@@ -6,10 +6,8 @@ import org.stalesoft.model.Document;
 
 public class DocumentListDto implements BaseDto<ArrayList<Document>>{
 	
-	
-	private String rootContext;
-	private String leafContext;
-	private String fullContext;
+	private String repository;
+	private String category;
 	private ArrayList<DocumentDto> documentDtos = new ArrayList<>();
 
 	public ArrayList<DocumentDto> getDocuments() {
@@ -23,11 +21,28 @@ public class DocumentListDto implements BaseDto<ArrayList<Document>>{
 		this.documentDtos = documentDtos;
 	}
 
-	@Override
-	public void add(ArrayList<Document> model) {
-		
+	public String getCategory() {
+		return category;
+	}
 
-		for(Document document : model) {
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getRepository() {
+		return repository;
+	}
+
+	public void setRepository(String repository) {
+		this.repository = repository;
+	}
+
+	@Override
+	public void add(ArrayList<Document> documents) {
+		
+		assert(documents != null);
+		
+		for(Document document : documents) {
 			
 			DocumentDto documentDto = new DocumentDto();
 			documentDto.add(document);
@@ -38,30 +53,6 @@ public class DocumentListDto implements BaseDto<ArrayList<Document>>{
 		
 	}
 
-	public String getFullContext() {
-		return fullContext;
-	}
-
-	public void setFullContext(String fullContext) {
-		this.fullContext = fullContext;
-	}
-
-	public String getLeafContext() {
-		return leafContext;
-	}
-
-	public void setLeafContext(String leafContext) {
-		this.leafContext = leafContext;
-	}
-
-	public String getRootContext() {
-		return rootContext;
-	}
-
-	public void setRootContext(String rootContext) {
-		this.rootContext = rootContext;
-	}
-	
 	
 
 }

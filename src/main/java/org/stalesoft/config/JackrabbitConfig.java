@@ -11,8 +11,6 @@ import org.apache.jackrabbit.core.config.RepositoryConfigurationParser;
 import org.springframework.beans.factory.BeanCreationException;
 import org.xml.sax.InputSource;
 
-
-
 public class JackrabbitConfig {
 
 	
