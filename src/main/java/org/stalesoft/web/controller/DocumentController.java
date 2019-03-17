@@ -108,6 +108,11 @@ public class DocumentController {
 		try {
 			mimeType = Files.probeContentType(Paths.get(uploadDocument.getOriginalFilename()));
 			
+			//JDK Bug - sometimes returns null
+			if (mimeType == null) {
+				mimeType = MimeTypeUtils.APPLICATION_OCTET_STREAM_VALUE; 
+			}
+			
 		} catch (IOException e) {
 			log.debug("Trouble probing mime type : {} ", e.getMessage());
 			mimeType = MimeTypeUtils.APPLICATION_OCTET_STREAM_VALUE;
@@ -117,17 +122,6 @@ public class DocumentController {
 		document.setMimeType(mimeType);
 		
 		documentService.addDocument(repository, category, document);
-		
-		//Getting the results from the location the document was saved.
-		ArrayList<Document> documents = documentService.getDocuments(repository, category);
-		
-		DocumentListDto documentList  = new DocumentListDto();
-		documentList.add(documents);
-		documentList.setRepository(repository);
-		documentList.setCategory(category);
-		
-		//TODO need to externalize the attribute names
-		model.addAttribute("results", documentList);
 		
 		return "app/upload";
 
