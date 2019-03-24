@@ -15,10 +15,9 @@ import org.stalesoft.web.api.handler.LoggingAccessDeniedHandler;
 
 @Configuration
 @EnableWebSecurity
-@Profile(value = {"development"})
-public class DevelopmentSecurityConfig extends WebSecurityConfigurerAdapter {
+public class StalewebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	private static Logger log = LoggerFactory.getLogger(DevelopmentSecurityConfig.class);
+	private static Logger log = LoggerFactory.getLogger(StalewebSecurityConfig.class);
 
 	@Autowired
 	private LoggingAccessDeniedHandler accessDeniedHandler;
