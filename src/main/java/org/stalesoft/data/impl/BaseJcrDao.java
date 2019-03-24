@@ -37,7 +37,7 @@ public class BaseJcrDao {
 	private static Logger log = LoggerFactory.getLogger(BaseJcrDao.class);
 
 	@Autowired
-	private Repository repository;
+	private Repository jcrRespository; //This is a JCR Repository, not a Spring Repository
 
 	protected Session session;
 
@@ -48,7 +48,7 @@ public class BaseJcrDao {
 
 			try {
 
-				session = repository.login(new SimpleCredentials("admin", "superSecret!".toCharArray()));
+				session = jcrRespository.login(new SimpleCredentials("admin", "superSecret!".toCharArray()));
 				URL x = getClass().getClassLoader().getResource("static/cnd/stalesoft.cnd");
 				File file = new File(x.getFile());
 				FileReader fileReader = new FileReader(file);
