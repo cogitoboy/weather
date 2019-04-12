@@ -24,7 +24,7 @@ public class WelcomeControllerTest {
 	@Test
 	public void testGetHome_getHome() throws Exception {
 		
-		mockMvc.perform(get("/welcome/home")).andExpect(view().name("welcome/home"));
+		mockMvc.perform(get("/welcome/home")).andExpect(view().name("/welcome/home"));
 		
 	}
 }

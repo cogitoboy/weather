@@ -13,8 +13,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.stalesoft.web.api.handler.LoggingAccessDeniedHandler;
 
 
-@Configuration
-@EnableWebSecurity
+//Configuration
+//EnableWebSecurity
 public class StalewebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private static Logger log = LoggerFactory.getLogger(StalewebSecurityConfig.class);
