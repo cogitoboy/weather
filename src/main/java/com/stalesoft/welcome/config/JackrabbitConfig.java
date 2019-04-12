@@ -1,4 +1,4 @@
-package org.stalesoft.config;
+package com.stalesoft.welcome.config;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
