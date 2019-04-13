@@ -6,9 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.js.ajax.SpringJavascriptAjaxHandler;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.webflow.config.AbstractFlowConfiguration;
 import org.springframework.webflow.definition.registry.FlowDefinitionRegistry;
 import org.springframework.webflow.engine.builder.support.FlowBuilderServices;
@@ -37,7 +35,7 @@ public class WebflowConfiguration extends AbstractFlowConfiguration {
 
 	@Bean
 	public FlowDefinitionRegistry flowRegistry() {
-		return getFlowDefinitionRegistryBuilder(flowBuilderServices()).addFlowLocationPattern("classpath:flows/**/*-flow.xml").build();
+		return getFlowDefinitionRegistryBuilder(flowBuilderServices()).addFlowLocationPattern("classpath:templates/welcome/flows/**/*-flow.xml").build();
 	}
 
 	@Bean
