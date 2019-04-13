@@ -5,14 +5,20 @@
       	http://www.springframework.org/schema/webflow
       	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-	
-        <view-state id="account" view="/welcome/signup/account">
+
+        <view-state id="account" view="/signup/account">
             <transition on="continue" to="done"/>
             <transition on="cancel" to="cancelled"/>
+            <transition on="here" to="hereAction"/>
         </view-state>
         
+        <action-state id="hereAction">
+			<evaluate expression="signupController.here()"/>
+			<transition on="here" to="done"/>
+		</action-state>
+
         <end-state id="cancelled" view="/welcome/home"/>
         
-        <end-state id="done" view="/welcome/signup/done"/>
+        <end-state id="done" view="/signup/done"/>
 
 </flow>
