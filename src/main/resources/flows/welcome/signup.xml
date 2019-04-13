@@ -4,21 +4,31 @@
 	xsi:schemaLocation="
       	http://www.springframework.org/schema/webflow
       	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
-
-
+  
         <view-state id="account" view="/signup/account">
-            <transition on="continue" to="done"/>
+            <transition on="continue" to="createAccount"/>
             <transition on="cancel" to="cancelled"/>
-            <transition on="here" to="hereAction"/>
         </view-state>
         
-        <action-state id="hereAction">
-			<evaluate expression="signupController.here()"/>
-			<transition on="here" to="done"/>
+        <!-- Take a Spring MVC Model object and populate it in account and then pass
+             it to signupController.createAccount() -->
+        
+         <action-state id="createAccount">
+			<evaluate expression="signupController.createAccount()"/>
+			<transition on="continue" to="details"/>
+			<transition on="error" to="account"/>
 		</action-state>
-
-        <end-state id="cancelled" view="/welcome/home"/>
+        
+        <view-state id="details" view="/signup/details">
+            <transition on="continue" to="payment"/>
+            <transition on="skip" to="done"/>
+        </view-state>
+        
+       
         
         <end-state id="done" view="/signup/done"/>
+        
+        <end-state id="cancelled" view="/welcome/home"/>
+        
 
 </flow>
