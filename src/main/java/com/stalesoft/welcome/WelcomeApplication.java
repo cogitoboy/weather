@@ -40,5 +40,7 @@ public class WelcomeApplication {
  * https://www.baeldung.com/spring-web-flow
  * https://stackoverflow.com/questions/49824189/spring-boot-webflow-mvc-thymeleaf-config
  * https://dzone.com/refcardz/spring-web-flow?chapter=5
+ * - SignupController.createAccount.
+ * Get data passed to the signup controller
  */
  
