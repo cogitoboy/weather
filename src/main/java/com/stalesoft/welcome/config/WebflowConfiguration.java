@@ -35,7 +35,7 @@ public class WebflowConfiguration extends AbstractFlowConfiguration {
 
 	@Bean
 	public FlowDefinitionRegistry flowRegistry() {
-		return getFlowDefinitionRegistryBuilder(flowBuilderServices()).addFlowLocationPattern("classpath:flows/**/*.xml").build();
+		return getFlowDefinitionRegistryBuilder(flowBuilderServices()).addFlowLocationPattern("classpath:templates/**/*-step.xml").build();
 	}
 
 	@Bean

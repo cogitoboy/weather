@@ -5,28 +5,24 @@
       	http://www.springframework.org/schema/webflow
       	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
   
-        <view-state id="account" view="/signup/account">
+        <view-state id="account" view="/signup/flow/credentials">
+            <transition on="continue" to="personal"/>
+            <transition on="cancel" to="cancelled"/>
+        </view-state>
+        
+        <view-state id="personal" view="/signup/flow/personal">
             <transition on="continue" to="createAccount"/>
             <transition on="cancel" to="cancelled"/>
         </view-state>
         
-        <!-- Take a Spring MVC Model object and populate it in account and then pass
-             it to signupController.createAccount() -->
-        
          <action-state id="createAccount">
 			<evaluate expression="signupController.createAccount()"/>
-			<transition on="continue" to="details"/>
-			<transition on="error" to="account"/>
+			<transition on="continue" to="done"/>
+			<transition on="error_account" to="account"/>
+			<transition on="error_personal" to="accountDetails"/>
 		</action-state>
         
-        <view-state id="details" view="/signup/details">
-            <transition on="continue" to="payment"/>
-            <transition on="skip" to="done"/>
-        </view-state>
-        
-       
-        
-        <end-state id="done" view="/signup/done"/>
+        <end-state id="done" view="done"/>
         
         <end-state id="cancelled" view="/welcome/home"/>
         
