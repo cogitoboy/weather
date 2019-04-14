@@ -15,6 +15,9 @@ public class WelcomeController {
 
 	@GetMapping("/home")
 	public String getHome() {
+		
+		log.debug("calling home");
+		
 		return "/welcome/home";
 	}
 	

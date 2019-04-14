@@ -7,8 +7,8 @@ import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.stalesoft.web.dto.SearchDto;
 
 import com.stalesoft.welcome.web.dto.SignupDto;
 
@@ -26,6 +26,7 @@ public class SignupController {
 	
 	}
 	
+	@PostMapping("/")
 	public String createAccount(@ModelAttribute("signup") SignupDto signupDto, Model model) {
 		
 		//validation
@@ -35,6 +36,7 @@ public class SignupController {
 		//respond
 		
 		log.debug("Emails is {}", signupDto.getEmail());
+		signupDto.setEmail("EMAIL");
 		
 		return "continue";
 	}
