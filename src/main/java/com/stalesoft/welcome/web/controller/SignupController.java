@@ -32,7 +32,7 @@ public class SignupController {
 		log.debug("Emails is {}", signupDto.getEmail());
 		log.debug("Password is {}", signupDto.getPassword());
 
-		return "continue";
+		return "/signup/signup-done";
 	}
 	
 	
