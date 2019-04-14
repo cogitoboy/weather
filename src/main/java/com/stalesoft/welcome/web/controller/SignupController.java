@@ -45,6 +45,7 @@ public class SignupController {
 	@ModelAttribute(value="signup")
 	public SignupDto getSignupDto() {
 		return new SignupDto();
+		
 	}
 	
 	public Model getSignupModel(SignupDto signupDto) {

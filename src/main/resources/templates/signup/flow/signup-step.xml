@@ -6,12 +6,12 @@
       	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
       	  
       	<on-start>
-        	<evaluate expression="signupController.getSignupDto()" result="flowScope.dto" />
+        	<evaluate expression="signupController.getSignupDto()" result="flowScope.signup" />
         	<evaluate expression="signupController.getSignupModel(flowScope.dto)" result="flowScope.model" />
     	</on-start>
 
       	
-    	<view-state id="credentials" view="/signup/flow/credentials" model="flowscopt.dto">
+    	<view-state id="credentials" view="/signup/flow/credentials" model="flowscope.signup">
             <transition on="continue" to="personal"/>
             <transition on="cancel" to="cancelled"/>
         </view-state>
