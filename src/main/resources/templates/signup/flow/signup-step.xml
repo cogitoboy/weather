@@ -7,7 +7,7 @@
       	  
       	<on-start>
         	<evaluate expression="signupController.getSignupDto()" result="flowScope.signup" />
-        	<evaluate expression="signupController.getSignupModel(flowScope.dto)" result="flowScope.model" />
+        	<evaluate expression="signupController.getSignupModel(flowScope.signup)" result="flowScope.model" />
     	</on-start>
 
       	
@@ -16,14 +16,14 @@
             <transition on="cancel" to="cancelled"/>
         </view-state>
         
-        <view-state id="personal" view="/signup/flow/personal">
+        <view-state id="personal" view="/signup/flow/personal" model="flowscope.signup">
             <transition on="continue" to="createAccount"/>
             <transition on="cancel" to="cancelled"/>
         </view-state>
         
          <action-state id="createAccount">
-         	<evaluate expression="signupController.createAccount(flowScope.dto, flowScope.model)"/>
-			<transition on="continue" to="createAccountII"/>
+         	<evaluate expression="signupController.createAccount(flowScope.signup, flowScope.model)"/>
+			<transition on="continue" to="done"/>
 			<transition on="error_account" to="account"/>
 			<transition on="error_personal" to="accountDetails"/>
 		</action-state>

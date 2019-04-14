@@ -29,22 +29,19 @@ public class SignupController {
 	@PostMapping("/")
 	public String createAccount(@ModelAttribute("signup") SignupDto signupDto, Model model) {
 		
-		//validation
-		
-		//create account
-		
-		//respond
-		
 		log.debug("Emails is {}", signupDto.getEmail());
-		signupDto.setEmail("EMAIL");
-		
+		log.debug("Password is {}", signupDto.getPassword());
+
 		return "continue";
 	}
 	
 	
 	@ModelAttribute(value="signup")
 	public SignupDto getSignupDto() {
-		return new SignupDto();
+		SignupDto dto =  new SignupDto();
+		dto.setEmail("email");
+		dto.setPassword("password");
+		return dto;
 		
 	}
 	

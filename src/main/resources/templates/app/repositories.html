@@ -99,7 +99,14 @@
                                     
                                     
                                 	<form action="#" th:action="@{/app/document/search}" th:object="${search}" method="post">
-										<input type="text" th:field="*{query}"/> 
+										<div>
+											<label>Email</label>
+											<input type="text" th:field="*{query}"/>
+										</div>
+										<div>
+											<label>Password</label>
+											<input type="password" th:field="*{query}"/>
+										</div>	 	 
 										<input type="hidden" value="*"	name="fullContext"/> 
 										<input type="submit" name="login-submit" id="login-submit"
 										class="btn btn-lg m_t_10" value="SEARCH">
