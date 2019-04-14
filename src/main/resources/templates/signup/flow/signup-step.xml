@@ -11,12 +11,12 @@
     	</on-start>
 
       	
-    	<view-state id="credentials" view="/signup/flow/credentials" model="flowscope.signup">
-            <transition on="continue" to="personal"/>
+    	<view-state id="credentials" view="/signup/flow/credentials" model="signup">
+    		<transition on="continue" to="personal"/>
             <transition on="cancel" to="cancelled"/>
         </view-state>
         
-        <view-state id="personal" view="/signup/flow/personal" model="flowscope.signup">
+        <view-state id="personal" view="/signup/flow/personal" model="signup">
             <transition on="continue" to="createAccount"/>
             <transition on="cancel" to="cancelled"/>
         </view-state>
@@ -27,15 +27,8 @@
 			<transition on="error_account" to="account"/>
 			<transition on="error_personal" to="accountDetails"/>
 		</action-state>
-        
-        <action-state id="createAccountII">
-         	<evaluate expression="signupController.createAccount(flowScope.dto, flowScope.model)"/>
-			<transition on="continue" to="done"/>
-			<transition on="error_account" to="account"/>
-			<transition on="error_personal" to="accountDetails"/>
-		</action-state>
 		
-        <end-state id="done" view="/signup/done"/>
+        <end-state id="done" view="/signup/flow/done"/>
         
         <end-state id="cancelled" view="/welcome/home"/>
         

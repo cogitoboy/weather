@@ -38,10 +38,7 @@ public class SignupController {
 	
 	@ModelAttribute(value="signup")
 	public SignupDto getSignupDto() {
-		SignupDto dto =  new SignupDto();
-		dto.setEmail("email");
-		dto.setPassword("password");
-		return dto;
+		return  new SignupDto();
 		
 	}
 	
