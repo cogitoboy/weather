@@ -42,5 +42,6 @@ public class WelcomeApplication {
  * https://dzone.com/refcardz/spring-web-flow?chapter=5
  * - SignupController.createAccount. SignupController.createAccount() signature same as if called directly from form.
  *   Goal: account.html and the signup workflow call the same createAccount controller method.
+ *   https://docs.spring.io/spring-webflow/docs/current/reference/html/defining-flows.html
  */
  

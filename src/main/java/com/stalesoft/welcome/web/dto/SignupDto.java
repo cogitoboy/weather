@@ -1,6 +1,10 @@
 package com.stalesoft.welcome.web.dto;
 
-public class SignupDto {
+import java.io.Serializable;
+
+public class SignupDto implements Serializable {
+	
+	private static final long serialVersionUID = -4884833543114202680L;
 	
 	private String email;
 

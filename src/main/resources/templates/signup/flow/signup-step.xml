@@ -4,8 +4,15 @@
 	xsi:schemaLocation="
       	http://www.springframework.org/schema/webflow
       	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+      	
+      	<on-start>
+        	<evaluate expression="signupController.getSignupDto()" result="flowScope.dto" />
+        	<evaluate expression="signupController.getSignupModel(flowScope.dto)" result="flowScope.model" />
+    	</on-start>
+    	
+    	
   
-        <view-state id="account" view="/signup/flow/credentials">
+        <view-state id="credentials" view="/signup/flow/credentials">
             <transition on="continue" to="personal"/>
             <transition on="cancel" to="cancelled"/>
         </view-state>
