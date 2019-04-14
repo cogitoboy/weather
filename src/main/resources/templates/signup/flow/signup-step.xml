@@ -9,11 +9,11 @@
         	<evaluate expression="signupController.getSignupDto()" result="flowScope.signup" />
         	<evaluate expression="signupController.getSignupModel(flowScope.signup)" result="flowScope.model" />
     	</on-start>
-
       	
     	<view-state id="credentials" view="/signup/flow/credentials" model="signup">
     		<transition on="continue" to="personal"/>
-            <transition on="cancel" to="cancelled"/>
+    		<transition on="cancel" to="cancelled"/>
+    		<transition on="error" to="credentials"/>
         </view-state>
         
         <view-state id="personal" view="/signup/flow/personal" model="signup">
@@ -28,7 +28,7 @@
 			<transition on="error_personal" to="accountDetails"/>
 		</action-state>
 		
-        <end-state id="done" view="/signup/flow/done"/>
+        <end-state id="done" view="/signup/signup-done"/>
         
         <end-state id="cancelled" view="/welcome/home"/>
         
