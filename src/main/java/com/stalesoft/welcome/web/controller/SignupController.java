@@ -39,6 +39,7 @@ public class SignupController {
 		return "continue";
 	}
 	
+	
 	@ModelAttribute(value="signup")
 	public SignupDto getSignupDto() {
 		return new SignupDto();
