@@ -6,14 +6,12 @@
       	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
       	  
       	<on-start>
-        	<evaluate expression="signupController.getSignupDto()" result="flowScope.signup" />
-        	<evaluate expression="signupController.getSignupModel(flowScope.signup)" result="flowScope.model" />
+        	<evaluate expression="signupStepController.getSignupDto()" result="flowScope.signup"/>
     	</on-start>
       	
     	<view-state id="credentials" view="/signup/flow/credentials" model="signup">
     		<transition on="continue" to="personal"/>
     		<transition on="cancel" to="cancelled"/>
-    		<transition on="error" to="credentials"/>
         </view-state>
         
         <view-state id="personal" view="/signup/flow/personal" model="signup">
@@ -22,10 +20,9 @@
         </view-state>
         
          <action-state id="createAccount">
-         	<evaluate expression="signupController.createAccount(flowScope.signup, flowScope.model)"/>
-			<transition on="/signup/signup-done" to="done"/>
-			<transition on="error_account" to="account"/>
-			<transition on="error_personal" to="accountDetails"/>
+         	<evaluate expression="signupStepController.createAccount(flowScope.signup)"/>
+			<transition on="continue" to="done"/>
+			<transition on="error" to="personal"/>
 		</action-state>
 		
         <end-state id="done" view="/signup/signup-done"/>

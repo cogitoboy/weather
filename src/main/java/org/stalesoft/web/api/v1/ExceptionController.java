@@ -1,21 +1,13 @@
 package org.stalesoft.web.api.v1;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.stalesoft.exception.DaoException;
 import org.stalesoft.exception.ResourceNotFoundException;
 import org.stalesoft.model.ServiceError;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
-/**
- * 
- * Handles all exceptions and builds proper response to the api client.
- * 
- * @author Dale
- *
- */
-@ControllerAdvice
+
 public class ExceptionController {
 
   public static final String NOT_FOUND_CODE = "Not Found";
