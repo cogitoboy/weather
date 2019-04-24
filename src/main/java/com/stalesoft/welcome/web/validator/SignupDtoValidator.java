@@ -4,6 +4,6 @@ import com.stalesoft.welcome.web.dto.SignupDto;
 
 public interface SignupDtoValidator {
 	
-	public SignupDto validate(SignupDto signupDto);
+	public Boolean validate(SignupDto signupDto);
 
 }

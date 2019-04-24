@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,19 +30,24 @@ public class SignupStepController {
 	
 	public String createAccount(SignupDto signupDto) {
 		
-		log.debug("createAccount called");
+		String nextState = "error";
 		
-		signupDto = signupDtoValidator.validate(signupDto);
-	
-		if (signupDto.getError()) {
+		try {
+		
+			if (signupDtoValidator.validate(signupDto)) {
 			
-			return "error";
+				//create account
+				
+				nextState = "continue";	
 			
-		} else {
-			
-			return "continue";	
+		    }
+		
+		} catch (Exception e) {
+			e.printStackTrace();
 			
 		}
+		
+		return nextState;
 		
 	}
 	

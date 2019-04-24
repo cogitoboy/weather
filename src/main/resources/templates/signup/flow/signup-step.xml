@@ -22,7 +22,7 @@
          <action-state id="createAccount">
          	<evaluate expression="signupStepController.createAccount(flowScope.signup)"/>
 			<transition on="continue" to="done"/>
-			<transition on="error" to="personal"/>
+			<transition on="error" to="credentials"/>
 		</action-state>
 		
         <end-state id="done" view="/signup/signup-done"/>
