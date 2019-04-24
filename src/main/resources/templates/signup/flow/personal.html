@@ -1,7 +1,43 @@
-personal.html
+<html>
+	<head>
 
-<br/>
-<a th:href="@{${flowExecutionUrl}(_eventId=continue)}">continue</a>
-<br/>
-<a th:href="@{${flowExecutionUrl}(_eventId=cancel)}">cancel</a>
+
+	</head>
+	<body>
+		<div>
+			<span>Personal.html</span>
+		</div>
+
+		<div>
+			<section>
+				<div><span>Form</span></div>
+				<div th:if="${signup.error}">
+					<span>There is an error!</span>
+				</div>
+				<div>
+					<form action="#" th:action="@{${flowExecutionUrl}(_eventId=continue)}" th:object="${signup}" method="post">
+				   		<div>
+				   			<label for="first_name">First Name:</label>
+				   			<input name="first_name" type="text" th:field="*{firstName}"/>
+				   		</div>
+				   		<div>
+				   			<label for="first_name">Last Name Name:</label>
+				   			<input name="last_name" type="text" th:field="*{lastName}"/>
+				   		</div>
+				   		<div>
+				   			<input type="submit"/>
+				   		</div>
+				   	</form>
+				</div>
+			</section>
+			<section>
+				<div><span>Links</span></div>
+				<div>
+					<a th:href="@{${flowExecutionUrl}(_eventId=cancel)}">cancel</a>
+				</div>
+			</section>
+		</div>
+	</body>
+</html>
+
 

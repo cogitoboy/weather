@@ -12,7 +12,7 @@ public class StandardEmailValidator implements EmailValidator {
 	@Override
 	public void validateEmail(String email) {
 		if (email == null || "".equals(email)) {
-			throw new ValidationException();
+			throw new ValidationException("Email cannont be empty");
 		}
 		
 	}
