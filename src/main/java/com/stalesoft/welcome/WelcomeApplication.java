@@ -43,5 +43,7 @@ public class WelcomeApplication {
  * - SignupController.createAccount. SignupController.createAccount() signature same as if called directly from form.
  *   Goal: account.html and the signup workflow call the same createAccount controller method.
  *   https://docs.spring.io/spring-webflow/docs/current/reference/html/defining-flows.html
+ *   Setting up security and users:
+ *   https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysql-a5d8545d837d
  */
  
