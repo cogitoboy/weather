@@ -19,8 +19,6 @@ import org.stalesoft.data.impl.OpenWeatherDao;
 @RunWith(MockitoJUnitRunner.class)
 public class OpenWeatherDaoTest {
 
-  private static final String ZIPCODE_US_QUERY =
-      "https://api.openweathermap.org/data/2.5/weather?zip=%s,us&APPID=%s";
   private static final String ZIPCODE = "12345";
   
   private static final Double WIND_DEG = 11.15;

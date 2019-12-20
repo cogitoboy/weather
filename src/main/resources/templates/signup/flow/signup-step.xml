@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+      	http://www.springframework.org/schema/webflow
+      	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+      	  
+      	<on-start>
+        	<evaluate expression="signupStepController.getSignupDto()" result="flowScope.signup"/>
+    	</on-start>
+      	
+    	<view-state id="credentials" view="/signup/flow/credentials" model="signup">
+    		<transition on="continue" to="personal"/>
+    		<transition on="cancel" to="cancelled"/>
+        </view-state>
+        
+        <view-state id="personal" view="/signup/flow/personal" model="signup">
+            <transition on="continue" to="createAccount"/>
+            <transition on="cancel" to="cancelled"/>
+        </view-state>
+        
+         <action-state id="createAccount">
+         	<evaluate expression="signupStepController.createAccount(flowScope.signup)"/>
+			<transition on="continue" to="done"/>
+			<transition on="error" to="credentials"/>
+		</action-state>
+		
+        <end-state id="done" view="/signup/signup-done"/>
+        
+        <end-state id="cancelled" view="/welcome/home"/>
+        
+
+</flow>

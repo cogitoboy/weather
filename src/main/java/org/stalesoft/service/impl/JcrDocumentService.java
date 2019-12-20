@@ -15,7 +15,12 @@ public class JcrDocumentService implements DocumentService {
 	@Autowired
 	private DocumentDao documentDao;
 
+	public static final FolderBuilder relativeDocumentFolder = (repository, category) ->  repository + DocumentDao.FOLDER_SEPARATOR + category;
 	
+	interface FolderBuilder {
+		String build(String repository, String category);
+	}
+
 
 	@Override
 	public Document getDocument(String uuid) {
@@ -29,14 +34,14 @@ public class JcrDocumentService implements DocumentService {
 
 
 	@Override
-	public String addDocument(Document document) {
+	public String addDocument(String repository, String category, Document document) {
 		
 		assert(document.getUuid() == null);
 		
 		UUID uuid = UUID.randomUUID();
 		document.setUuid(uuid.toString());//UUID is each specific upload.
 		
-		documentDao.saveDocument(document);
+		documentDao.saveDocument(relativeDocumentFolder.build(repository, category), document);
 		
 		return uuid.toString();
 	}
@@ -72,4 +77,60 @@ public class JcrDocumentService implements DocumentService {
 		// TODO Need to be implemented
 		return new ArrayList<>();
 	}
+
+
+
+
+	@Override
+	public String updateDocument(String repository, String category, Document document) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public String mergeDocument(String reposiotry, String category, Document document) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public String deleteDocument(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public String deleteDocumentVersion(String id, String version) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public ArrayList<Document> getDocuments(String repository, String category) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public ArrayList<Document> findDocuments(String repository, String category, String query) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }
+

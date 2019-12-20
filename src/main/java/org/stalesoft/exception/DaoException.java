@@ -1,7 +1,10 @@
 package org.stalesoft.exception;
 
 public class DaoException extends RuntimeException {
-  private Long resourceId;
+	
+	private static final long serialVersionUID = 1L;
+	
+	private Long resourceId;
 
   public DaoException(Long resourceId, String message) {
     super(message);

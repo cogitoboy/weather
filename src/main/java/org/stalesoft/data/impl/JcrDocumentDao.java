@@ -20,12 +20,19 @@ public class JcrDocumentDao extends BaseJcrDao implements DocumentDao {
 	private static Logger log = LoggerFactory.getLogger(JcrDocumentDao.class);
 
 	protected static String FULL_QUERY_SQL =  "SELECT p.* FROM [nt:resource] AS p "
-							+ "WHERE p.[jcr:mimeType] like '%%%1$s%%' OR p.[doc:name] like '%%%1$s%%' OR p.[doc:uuid] like '%%%1$s%%' ";
+							+ "WHERE p.[jcr:mimeType] like '%%%1$s%%'"
+							+ " OR p.[doc:name] like '%%%1$s%%'"
+							+ " OR p.[doc:consumerid] like '%%%1$s%%'"
+							+ " OR p.[doc:category] like '%%%1$s%%'"
+							+ " OR p.[doc:documentid] like '%%%1$s%%'"
+							+ " OR p.[doc:description] like '%%%1$s%%'"
+							+ " OR p.[doc:consumername] like '%%%1$s%%'"
+							+ " OR p.[doc:uuid] like '%%%1$s%%' ";
 	protected static String GET_BY_UUID_SQL = "SELECT p.* FROM [nt:resource] AS p WHERE p.[doc:uuid] LIKE '%%%1$s%%' ";
 	protected static String GET_BY_NAME_SQL = "SELECT p.* FROM [nt:file] AS p WHERE NAME(p) LIKE '%%%1$s%%'";
 
 	@Override
-	public void saveDocument(Document document) {
+	public void saveDocument(String folder, Document document) {
 
 		openSession();// TODO AOP? Some other approach to opening and closing session. Transactions
 						// etc. Some cleverness needed.
@@ -33,15 +40,12 @@ public class JcrDocumentDao extends BaseJcrDao implements DocumentDao {
 		assert (document.getMimeType() != null);
 		assert (document.getName() != null);
 		assert (document.getUuid() != null);
-
-		String path = document.getFolder();
-
-		assert (path != null);
-		assert ("".equals(path));
+		assert (folder != null);
+		assert ("".equals(folder));
 
 		try {
 
-			Node documentNode = getDocumentNode(document.getFolder(), document.getName());
+			Node documentNode = getDocumentNode(folder, document.getName());
 			Node contentNode = (Node)documentNode.getNodes().next();
 			
 			Binary binary = session.getValueFactory().createBinary(document.getInputStream());
@@ -59,6 +63,7 @@ public class JcrDocumentDao extends BaseJcrDao implements DocumentDao {
 			contentNode.setProperty("jcr:lastModified", Calendar.getInstance());
 			
 			session.save();
+			log.debug("document saved");
 
 		} catch (RepositoryException e) {
 			// TODO need to throw a dao exception

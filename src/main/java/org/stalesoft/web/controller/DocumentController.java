@@ -27,9 +27,6 @@ import org.stalesoft.service.DocumentService;
 import org.stalesoft.web.dto.DocumentListDto;
 import org.stalesoft.web.dto.SearchDto;
 
-
-//TODO: Add console logging.
-
 @Controller
 public class DocumentController {
 
@@ -43,14 +40,14 @@ public class DocumentController {
 	/**
 	 * Displays empty
 	 */
-	@GetMapping("/app/document/{fullContext}")
-	public String documentsHome(@PathVariable("fullContext") String fullContext, Model model) {
-
+	@GetMapping("/app/document/{repository}/{category}")
+	public String documentsHome(@PathVariable("fullContext") String repository, String category, Model model) {
+		
 		DocumentListDto documentList  = new DocumentListDto();
-		documentList.setFullContext(fullContext);
+		documentList.setRepository(repository);
+		documentList.setCategory(category);
 		
 		model.addAttribute("results", documentList);
-		
 		
 		return "app/documents";
 		
@@ -61,10 +58,22 @@ public class DocumentController {
 	 * Upload a document
 
 	 */
+	@GetMapping("/app/document")
+	public String uploadDocumentHome(Model model) {
+		
+		return "app/upload";
+	}
 	
 	@PostMapping("/app/document")
-	public String uploadDocument(@RequestParam("file") MultipartFile uploadDocument, @RequestParam("fullContext") String fullContext, Model model) {
-		//TODO Log all incoming parameters
+	public String uploadDocument(@RequestParam("file") MultipartFile uploadDocument, 
+			@RequestParam("repository") String repository,
+			@RequestParam("category") String category,
+			@RequestParam("consumerId") String consumerId,
+			@RequestParam("documentId") String documentId,
+			@RequestParam("description") String description,
+			@RequestParam("consumerName") String consumerName,
+			Model model) {
+
 		
 		// TODO: Validate: e.g. uploadDocument != null, etc.
 		//TODO: Validate fullContext is leaf
@@ -84,17 +93,25 @@ public class DocumentController {
 
 		Document document = new Document();
 		
-		// TODO: a complete set of document parameters.
+		document.setRepository(repository);
+		document.setCategory(category);
 		
 		document.setInputStream(documentInputStream);
-		document.setFolder(fullContext);
 		document.setName(uploadDocument.getOriginalFilename());
-		
+		document.setConsumerId(consumerId);
+		document.setDescription(description);
+		document.setConsumerName(consumerName);
+		document.setDocumentId(documentId);
 		
 		String mimeType = MimeTypeUtils.APPLICATION_OCTET_STREAM_VALUE;
 		
 		try {
 			mimeType = Files.probeContentType(Paths.get(uploadDocument.getOriginalFilename()));
+			
+			//JDK Bug - sometimes returns null
+			if (mimeType == null) {
+				mimeType = MimeTypeUtils.APPLICATION_OCTET_STREAM_VALUE; 
+			}
 			
 		} catch (IOException e) {
 			log.debug("Trouble probing mime type : {} ", e.getMessage());
@@ -104,19 +121,9 @@ public class DocumentController {
 		
 		document.setMimeType(mimeType);
 		
-		documentService.addDocument(document);
+		documentService.addDocument(repository, category, document);
 		
-		//Getting the results from the location the document was saved.
-		ArrayList<Document> documents = documentService.getDocuments(fullContext);
-		
-		DocumentListDto documentList  = new DocumentListDto();
-		documentList.add(documents);
-		documentList.setFullContext(fullContext);
-		
-		//TODO need to externalize the attribute names
-		model.addAttribute("results", documentList);
-		
-		return "app/documents";
+		return "app/upload";
 
 	}
 
@@ -131,7 +138,8 @@ public class DocumentController {
 
 		DocumentListDto documentList = new DocumentListDto();
 		documentList.add(documents);
-		documentList.setFullContext(searchDto.getFullContext());
+		documentList.setCategory(searchDto.getCategory());
+		documentList.setRepository(searchDto.getRepository());
 
 		model.addAttribute("results", documentList);
 
